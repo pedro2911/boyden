@@ -77,10 +77,10 @@ if(ENVIRONMENT == "production"){
 
 	$db['default'] = array(
 		'dsn'	=> '',
-		'hostname' => 'boyden.mysql.dbaas.com.br',
-		'username' => 'boyden',
-		'password' => 'boyden20*',
-		'database' => 'boyden',
+		'hostname' => '',
+		'username' => '',
+		'password' => '',
+		'database' => '',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,
