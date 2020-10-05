@@ -1,0 +1,154 @@
+
+/* Google Font*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+/* General */
+html {
+	 font-family: 'Roboto', sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-ms-overflow-style: scrollbar;
+	-webkit-tap-highlight-color: transparent
+}
+
+html{
+  height: 100%;
+}
+
+
+@-ms-viewport {
+	width: device-width
+}
+body {
+   	background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #000;
+    letter-spacing: 0.5px;
+}
+[tabindex="-1"]:focus {
+	outline: 0!important
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+select option {
+    background: #000;
+}
+
+::placeholder {
+    color: #fff !important;
+    font-size: 13px;
+    opacity: .5 !important; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #fff !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+   color: #fff !important;
+}
+
+section {
+    width: 100%;
+    padding: 2% 15%;
+    font-size: 16px;
+}
+
+section .header {
+    margin-bottom: 3vh;
+}
+section .header::after {
+    clear: both;
+    display: block;
+    content: "";
+}
+section .header img {
+    width: 85px;
+    height: auto;
+    float: left;
+    margin-right: 2%;
+}
+section .header h2 {
+    color: #00aeef;
+    margin: 20px 15px 0px 0px;
+    float: left;
+    width: calc(95% - 115px);
+}
+section .header p {
+    text-align: left;
+}
+section p {
+    text-align: justify;
+}
+section table {
+    width: 100%;
+}
+section table .thead-blue {
+    background: #00aeef;
+    color: #fff;
+    text-align: center;
+}
+section table thead {
+    background: #fff;
+    color: #000;
+    text-align: left;
+}
+section table thead th {
+    padding: 10px;
+    font-size: 18px;
+}
+section table thead th.font-12 {
+    font-size: 12px !important;
+}
+section table tbody {
+    border-top: solid 4px #343a40;
+}
+section table tbody th {
+    border: solid 1px #343a40;
+    text-align: center;
+    font-weight: 400;
+}
+section table tbody th:first-child {
+    border-left: none;
+}
+section table tbody th:last-child {
+    border-right: none;
+}
+section table tbody th h4 {
+    margin: 0px !important;
+}
+section table tbody th span {
+    font-size: 13px;
+}
+section table tfoot {
+    background: #00aeef;
+    color: #fff;
+    text-align: left;
+}
+section table tfoot th {
+    padding: 10px 5px;
+}
+section ul {
+    display: inline;
+    color: #00aeef;
+}
+section ul::after {
+    clear: both;
+    display: block;
+    content: "";
+}
+section ul li {
+    float: left;
+    width: 28%;
+    margin-left: 3%;
+    color: #000;
+}
+#myChart {
+    width: auto !important;
+    height: 300px !important;
+    margin: 0 auto;
+}

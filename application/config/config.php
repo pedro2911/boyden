@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(ENVIRONMENT == "testing"){
-  $config['base_url'] = 'http://localhost/Dropbox/projetos/boyden/';
+  $config['base_url'] = 'http://localhost/ready/boyden/';
 }
 
 if(ENVIRONMENT == "production"){

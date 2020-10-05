@@ -136,6 +136,71 @@ class Pesquisa_model extends CI_Model{
 
 	}
 
+	public function get_totais_por_grupos(){
+		$sql = "select count(vr_faturamento_2019) as total,  case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end grupo 
+		from tab_pesquisa_2020 
+		where fl_pesquisa_finalizada = 1
+		group by ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )";
+		 return $this->db->query($sql)->result_object();		
+	}
+	public function get_empresas_participante(){
+		$sql = "select nm_nome_empresa
+		from tab_pesquisa_2020 
+		where fl_pesquisa_finalizada = 1";
+		return $this->db->query($sql)->result_object();
+	}
+
+	public function get_participantes_por_pais(){
+		$sql = "select nm_nacionalidade, count(nm_nacionalidade) total
+		from tab_pesquisa_2020 
+		where fl_pesquisa_finalizada = 1 and not isnull(nm_nacionalidade)
+		group by nm_nacionalidade";
+		return $this->db->query($sql)->result_object();
+	}
+	public function get_faturamento_bruto(){
+		$sql = "select round(sum( IFNULL(vr_faturamento_2018,0) ),2) as total2018,
+		round(sum( IFNULL(vr_faturamento_2019,0)),2) as total2019,
+		round(((sum(IFNULL(vr_faturamento_2019,0)) - sum(IFNULL(vr_faturamento_2018,0)))/sum(IFNULL(vr_faturamento_2018,0))) *100,2) percentagem,
+		case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end grupo 
+		from tab_pesquisa_2020 
+		where fl_pesquisa_finalizada = 1 
+		group by ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )";
+		return $this->db->query($sql)->result_object();
+	}
+	public function get_numero_funcionarios(){
+		$sql = "select round(sum( IFNULL(nr_total_colaboradores_2018,0) ),2) as total2018,
+		round(sum( IFNULL(nr_total_colaboradores_2019,0)),2) as total2019,
+		round(((sum(IFNULL(nr_total_colaboradores_2019,0)) - sum(IFNULL(nr_total_colaboradores_2018,0)))/sum(IFNULL(nr_total_colaboradores_2018,0))) *100,0) percentagem,
+		case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end grupo 
+		from tab_pesquisa_2020 
+		where fl_pesquisa_finalizada = 1 
+		group by ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )";
+		return $this->db->query($sql)->result_object();
+	}
 }
 
 ?>
