@@ -184,8 +184,8 @@ class Pesquisa_model extends CI_Model{
 		return $this->db->query($sql)->result_object();
 	}
 	public function get_numero_funcionarios(){
-		$sql = "select round(sum( IFNULL(nr_total_colaboradores_2018,0) ),2) as total2018,
-		round(sum( IFNULL(nr_total_colaboradores_2019,0)),2) as total2019,
+		$sql = "select sum( IFNULL(nr_total_colaboradores_2018,0) ) as total2018,
+		sum( IFNULL(nr_total_colaboradores_2019,0)) as total2019,
 		round(((sum(IFNULL(nr_total_colaboradores_2019,0)) - sum(IFNULL(nr_total_colaboradores_2018,0)))/sum(IFNULL(nr_total_colaboradores_2018,0))) *100,0) percentagem,
 		case 
 		when vr_faturamento_2019 >= 900000.01 then 'I' 
@@ -199,6 +199,114 @@ class Pesquisa_model extends CI_Model{
 		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
 		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
 		 end )";
+		return $this->db->query($sql)->result_object();
+	}
+	public function get_excutivos() {
+		$sql = "select round(sum( IFNULL(nr_posicao_executivos_2018_diretoria+nr_posicao_executivos_2018_gerencia,0) ),2) as total2018,
+		round(sum( IFNULL(nr_posicao_executivos_2019_diretoria+nr_posicao_executivos_2019_gerencia,0)),2) as total2019,
+		IFNULL(round(((sum(IFNULL(nr_posicao_executivos_2019_diretoria+nr_posicao_executivos_2019_gerencia,0)) - sum(IFNULL(nr_posicao_executivos_2018_diretoria+nr_posicao_executivos_2018_gerencia,0)))/sum(IFNULL(nr_posicao_executivos_2018_diretoria+nr_posicao_executivos_2018_gerencia,0))) *100,0),0) percentagem,
+		case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end grupo
+		from tab_pesquisa_2020 as a
+		where fl_pesquisa_finalizada = 1 
+		group by ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		";
+		 return $this->db->query($sql)->result_object();
+	}
+	public function get_expatriados_brasil() {
+		$sql = "select round(sum( IFNULL(nr_expatriados_brasil_2018,0) ),2) as total2018,
+		round(sum( IFNULL(nr_expatriados_brasil_2019,0)),2) as total2019,
+		IFNULL(round(((sum(IFNULL(nr_expatriados_brasil_2019,0)) - sum(IFNULL(nr_expatriados_brasil_2018,0)))/sum(IFNULL(nr_expatriados_brasil_2018,0))) *100,0),0) percentagem,
+		case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end grupo
+		from tab_pesquisa_2020 as a
+		where fl_pesquisa_finalizada = 1 
+		group by ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		";
+		 return $this->db->query($sql)->result_object();
+	}
+	public function get_expatriados_exterior() {
+		$sql = "select round(sum( IFNULL(nr_executivos_exterior_2018,0) ),2) as total2018,
+		round(sum( IFNULL(nr_executivos_exterior_2019,0)),2) as total2019,
+		IFNULL(round(((sum(IFNULL(nr_executivos_exterior_2019,0)) - sum(IFNULL(nr_executivos_exterior_2018,0)))/sum(IFNULL(nr_executivos_exterior_2018,0))) *100,0),0) percentagem,
+		case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end grupo
+		from tab_pesquisa_2020 as a
+		where fl_pesquisa_finalizada = 1 
+		group by ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		";
+		 return $this->db->query($sql)->result_object();
+	}
+	public function get_mudancas_remuneracao_presidencias() {
+		$sql = "select if(nm_remuneracao_salario_presidencia = '', 'Não respondeu', nm_remuneracao_salario_presidencia) nm_remuneracao_salario_presidencia, 
+		round(count(nm_remuneracao_salario_presidencia) * 100 / (SELECT count(nm_remuneracao_salario_presidencia) FROM tab_pesquisa_2020 where fl_pesquisa_finalizada = 1  and nm_remuneracao_salario_presidencia is not null ),2) total
+		from tab_pesquisa_2020
+		where fl_pesquisa_finalizada = 1  and nm_remuneracao_salario_presidencia is not null  
+		group by nm_remuneracao_salario_presidencia";
+		 return $this->db->query($sql)->result_object();
+	}
+
+	public function get_mudancas_beneficios_presidencias() {
+		$sql = "select if(nm_remuneracao_beneficios_presidencia = '', 'Não respondeu', nm_remuneracao_beneficios_presidencia) nm_remuneracao_beneficios_presidencia, 
+		round(count(nm_remuneracao_beneficios_presidencia) * 100 / (SELECT count(nm_remuneracao_beneficios_presidencia) FROM tab_pesquisa_2020 where fl_pesquisa_finalizada = 1  and nm_remuneracao_beneficios_presidencia is not null ),2) total
+		from tab_pesquisa_2020
+		where fl_pesquisa_finalizada = 1  and nm_remuneracao_beneficios_presidencia is not null  
+		group by nm_remuneracao_beneficios_presidencia";
+		return $this->db->query($sql)->result_object();
+	}
+	public function get_mudancas_remuneracao_diretorias() {
+		$sql = "select if(nm_remuneracao_salario_diretoria = '', 'Não respondeu', nm_remuneracao_salario_diretoria) nm_remuneracao_salario_diretoria, 
+		round(count(nm_remuneracao_salario_diretoria) * 100 / (SELECT count(nm_remuneracao_salario_diretoria) FROM tab_pesquisa_2020 where fl_pesquisa_finalizada = 1  and nm_remuneracao_salario_diretoria is not null ),2) total
+		from tab_pesquisa_2020
+		where fl_pesquisa_finalizada = 1  and nm_remuneracao_salario_diretoria is not null  
+		group by nm_remuneracao_salario_diretoria";
+		 return $this->db->query($sql)->result_object();
+	}
+
+	public function get_mudancas_beneficios_diretorias() {
+		$sql = "select if(nm_remuneracao_beneficios_diretoria = '', 'Não respondeu', nm_remuneracao_beneficios_diretoria) nm_remuneracao_beneficios_diretoria, 
+		round(count(nm_remuneracao_beneficios_diretoria) * 100 / (SELECT count(nm_remuneracao_beneficios_diretoria) FROM tab_pesquisa_2020 where fl_pesquisa_finalizada = 1  and nm_remuneracao_beneficios_diretoria is not null ),2) total
+		from tab_pesquisa_2020
+		where fl_pesquisa_finalizada = 1  and nm_remuneracao_beneficios_diretoria is not null  
+		group by nm_remuneracao_beneficios_diretoria";
+		return $this->db->query($sql)->result_object();
+	}
+	public function get_mudancas_remuneracao_gerencias() {
+		$sql = "select if(nm_remuneracao_salario_gerencia = '', 'Não respondeu', nm_remuneracao_salario_gerencia) nm_remuneracao_salario_gerencia, 
+		round(count(nm_remuneracao_salario_gerencia) * 100 / (SELECT count(nm_remuneracao_salario_gerencia) FROM tab_pesquisa_2020 where fl_pesquisa_finalizada = 1  and nm_remuneracao_salario_gerencia is not null ),2) total
+		from tab_pesquisa_2020
+		where fl_pesquisa_finalizada = 1  and nm_remuneracao_salario_gerencia is not null  
+		group by nm_remuneracao_salario_gerencia";
+		 return $this->db->query($sql)->result_object();
+	}
+
+	public function get_mudancas_beneficios_gerencias() {
+		$sql = "select if(nm_remuneracao_beneficios_gerencia = '', 'Não respondeu', nm_remuneracao_beneficios_gerencia) nm_remuneracao_beneficios_gerencia, 
+		round(count(nm_remuneracao_beneficios_gerencia) * 100 / (SELECT count(nm_remuneracao_beneficios_gerencia) FROM tab_pesquisa_2020 where fl_pesquisa_finalizada = 1  and nm_remuneracao_beneficios_gerencia is not null ),2) total
+		from tab_pesquisa_2020
+		where fl_pesquisa_finalizada = 1  and nm_remuneracao_beneficios_gerencia is not null  
+		group by nm_remuneracao_beneficios_gerencia";
 		return $this->db->query($sql)->result_object();
 	}
 }

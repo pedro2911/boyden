@@ -26,6 +26,7 @@
   <link href="<?php echo base_url("assets-pesquisa/css/relatorio.css"); ?>" rel="stylesheet"/>
   <!-- Charts lib -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
 
 </head>
 
@@ -172,11 +173,11 @@
     <div class="header">
       <img src="<?php echo base_url('assets/images/relatorio/page_3.3.png'); ?>" alt="">
       <h2>Número de funcionários</h2>
-      <p>
-      No geral houve um pequeno aumento no quadro de colaboradores, com destaque para as
-      empresas de porte médio. Já as de menor porte diminuíram suas estruturas.<br>
-      </p>
     </div>
+    <p>
+    No geral houve um pequeno aumento no quadro de colaboradores, com destaque para as
+    empresas de porte médio. Já as de menor porte diminuíram suas estruturas.<br>
+    </p>
     <br>
     <table>
       <thead>
@@ -232,11 +233,11 @@
     <div class="header">
       <img src="<?php echo base_url('assets/images/relatorio/page_4.1.png'); ?>" alt="">
       <h2>Total de executivos</h2>
-      <p>
-      Em 2018 as empresas em geral aumentaram o número de executivos, interrompendo uma sequência
-      de anos de enxugamento.<br>
-      </p>
     </div>
+    <p>
+    Em 2018 as empresas em geral aumentaram o número de executivos, interrompendo uma sequência
+    de anos de enxugamento.<br>
+    </p>
     <br>
     <table>
       <thead>
@@ -278,33 +279,33 @@
             <h4>Grupo I</h4>
             <span>Acima de R$ 900 milhões</span>
           </th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_i']['total2018']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_i']['total2019']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_i']['percentagem']; ?>%</th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_i']['total2019']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_i']['percentagem']; ?>%</th>
+          <th><?php echo $obj['excutivos']['grupo_i']['total2018']; ?></th>
+          <th><?php echo round($obj['excutivos']['grupo_i']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2018'],2); ?>%</th>
+          <th><?php echo$obj['excutivos']['grupo_i']['total2019']; ?></th>
+          <th><?php echo round($obj['excutivos']['grupo_i']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2019'],2); ?>%</th>
+          <th><?php echo round((round($obj['excutivos']['grupo_i']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2019'],2) - round($obj['excutivos']['grupo_i']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2018'],2)) / round($obj['excutivos']['grupo_i']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2018'],2),2); ?>%</th>
         </tr>
         <tr>
           <th>
             <h4>Grupo II</h4>
             <span>Acima de R$ 150 milhões até R$ 900 milhões</span>
           </th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_ii']['total2018']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_ii']['total2019']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_ii']['percentagem']; ?>%</th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_ii']['total2019']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_ii']['percentagem']; ?>%</th>
+          <th><?php echo $obj['excutivos']['grupo_ii']['total2018']; ?></th>
+          <th><?php echo round($obj['excutivos']['grupo_ii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2018'],2); ?>%</th>
+          <th><?php echo$obj['excutivos']['grupo_ii']['total2019']; ?></th>
+          <th><?php echo round($obj['excutivos']['grupo_ii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2019'],2); ?>%</th>
+          <th><?php echo round((round($obj['excutivos']['grupo_ii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2019'],2) - round($obj['excutivos']['grupo_ii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2018'],2)) / round($obj['excutivos']['grupo_ii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2018'],2),2); ?>%</th>
         </tr>
         <tr>
           <th>
             <h4>Grupo III</h4>
             <span>Acima de R$ 900 milhões</span>
           </th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_iii']['total2018']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_iii']['total2019']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_iii']['percentagem']; ?>%</th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_iii']['total2019']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_iii']['percentagem']; ?>%</th>
+          <th><?php echo $obj['excutivos']['grupo_iii']['total2018']; ?></th>
+          <th><?php echo round($obj['excutivos']['grupo_iii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2018'],2); ?>%</th>
+          <th><?php echo$obj['excutivos']['grupo_iii']['total2019']; ?></th>
+          <th><?php echo round($obj['excutivos']['grupo_iii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2019'],2); ?>%</th>
+          <th><?php echo round((round($obj['excutivos']['grupo_iii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2019'],2) - round($obj['excutivos']['grupo_iii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2018'],2)) / round($obj['excutivos']['grupo_iii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2018'],2),2); ?>%</th>
         </tr>
       </tbody>
       <tfoot>
@@ -312,51 +313,567 @@
           <th>
             <b>Total</b>
           </th>
-          <th class="text-center"><?php echo $obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018']; ?></th>
-          <th class="text-center"><?php echo $obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019']; ?></th>
-          <th class="text-center"><?php echo $obj['numero_funcionarios']['grupo_i']['percentagem'] + $obj['numero_funcionarios']['grupo_ii']['percentagem'] + $obj['numero_funcionarios']['grupo_iii']['percentagem']; ?>%</th>
-          <th class="text-center"><?php echo $obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019']; ?></th>
-          <th class="text-center"><?php echo $obj['numero_funcionarios']['grupo_i']['percentagem'] + $obj['numero_funcionarios']['grupo_ii']['percentagem'] + $obj['numero_funcionarios']['grupo_iii']['percentagem']; ?>%</th>
+          <th class="text-center"><?php echo $obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']; ?></th>
+          <th class="text-center"><?php echo round(($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018']),2); ?>%</th>
+          <th class="text-center"><?php echo $obj['excutivos']['grupo_i']['total2019'] + $obj['excutivos']['grupo_ii']['total2019'] + $obj['excutivos']['grupo_iii']['total2019']; ?></th>
+          <th class="text-center"><?php echo round(($obj['excutivos']['grupo_i']['total2019'] + $obj['excutivos']['grupo_ii']['total2019'] + $obj['excutivos']['grupo_iii']['total2019']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019']),2); ?>%</th>
+          <th class="text-center"><?php echo round((round(($obj['excutivos']['grupo_i']['total2019'] + $obj['excutivos']['grupo_ii']['total2019'] + $obj['excutivos']['grupo_iii']['total2019']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019']),2) - round(($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018']),2)) / round(($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018']),2),2); ?>%</th>
         </tr>
       </tfoot>
     </table>
   </section>
-
+  <section>
+    <div class="header">
+      <img src="<?php echo base_url('assets/images/relatorio/page_4.2.png'); ?>" alt="">
+      <h2>Expatriados</h2>
+    </div>
+    <p>
+    No último ano, o número de expatriados no Brasil permaneceu estável, interrompendo a queda
+    verificada nos últimos quatro anos. Já o número de executivos locais trabalhando no exterior mantém
+    sua trajetória de crescimento observada nos últimos anos.<br>
+    </p>
+    <div class="comentario">
+      Executivos
+      estrangeiros
+      no Brasil
+    </div>
+    <table class="expatriados-table mb-5">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="text-center">Jan/18</th>
+          <th class="text-center">Jan/19</th>
+          <th class="text-center">Variação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-left">
+            <h4>Grupo I</h4>
+            <span>Acima de R$ 900 milhões</span>
+          </th>
+          <th><?php echo $obj['expatriados_brasil']['grupo_i']['total2018']; ?></th>
+          <th><?php echo $obj['expatriados_brasil']['grupo_i']['total2019']; ?></th>
+          <th><?php echo $obj['expatriados_brasil']['grupo_i']['percentagem']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <h4>Grupo II</h4>
+            <span>Acima de R$ 150 milhões até R$ 900 milhões</span>
+          </th>
+          <th><?php echo $obj['expatriados_brasil']['grupo_ii']['total2018']; ?></th>
+          <th><?php echo $obj['expatriados_brasil']['grupo_ii']['total2019']; ?></th>
+          <th><?php echo $obj['expatriados_brasil']['grupo_ii']['percentagem']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <h4>Grupo III</h4>
+            <span>Acima de R$ 900 milhões</span>
+          </th>
+          <th><?php echo $obj['expatriados_brasil']['grupo_iii']['total2018']; ?></th>
+          <th><?php echo $obj['expatriados_brasil']['grupo_iii']['total2019']; ?></th>
+          <th><?php echo $obj['expatriados_brasil']['grupo_iii']['percentagem']; ?>%</th>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>
+            <b>Total</b>
+          </th>
+          <th class="text-center"><?php echo $obj['expatriados_brasil']['grupo_i']['total2018'] + $obj['expatriados_brasil']['grupo_ii']['total2018'] + $obj['expatriados_brasil']['grupo_iii']['total2018']; ?></th>
+          <th class="text-center"><?php echo $obj['expatriados_brasil']['grupo_i']['total2019'] + $obj['expatriados_brasil']['grupo_ii']['total2019'] + $obj['expatriados_brasil']['grupo_iii']['total2019']; ?></th>
+          <th class="text-center"><?php echo $obj['expatriados_brasil']['grupo_i']['percentagem'] + $obj['numero_fuexpatriados_brasilncionarios']['grupo_ii']['percentagem'] + $obj['expatriados_brasil']['grupo_iii']['percentagem']; ?>%</th>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="comentario">
+      Executivos
+      brasileiros
+      no exterior
+    </div>
+    <table class="expatriados-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="text-center">Jan/18</th>
+          <th class="text-center">Jan/19</th>
+          <th class="text-center">Variação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-left">
+            <h4>Grupo I</h4>
+            <span>Acima de R$ 900 milhões</span>
+          </th>
+          <th><?php echo $obj['expatriados_exterior']['grupo_i']['total2018']; ?></th>
+          <th><?php echo $obj['expatriados_exterior']['grupo_i']['total2019']; ?></th>
+          <th><?php echo $obj['expatriados_exterior']['grupo_i']['percentagem']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <h4>Grupo II</h4>
+            <span>Acima de R$ 150 milhões até R$ 900 milhões</span>
+          </th>
+          <th><?php echo $obj['expatriados_exterior']['grupo_ii']['total2018']; ?></th>
+          <th><?php echo $obj['expatriados_exterior']['grupo_ii']['total2019']; ?></th>
+          <th><?php echo $obj['expatriados_exterior']['grupo_ii']['percentagem']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <h4>Grupo III</h4>
+            <span>Acima de R$ 900 milhões</span>
+          </th>
+          <th><?php echo $obj['expatriados_exterior']['grupo_iii']['total2018']; ?></th>
+          <th><?php echo $obj['expatriados_exterior']['grupo_iii']['total2019']; ?></th>
+          <th><?php echo $obj['expatriados_exterior']['grupo_iii']['percentagem']; ?>%</th>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>
+            <b>Total</b>
+          </th>
+          <th class="text-center"><?php echo $obj['expatriados_exterior']['grupo_i']['total2018'] + $obj['expatriados_exterior']['grupo_ii']['total2018'] + $obj['expatriados_exterior']['grupo_iii']['total2018']; ?></th>
+          <th class="text-center"><?php echo $obj['expatriados_exterior']['grupo_i']['total2019'] + $obj['expatriados_exterior']['grupo_ii']['total2019'] + $obj['expatriados_exterior']['grupo_iii']['total2019']; ?></th>
+          <th class="text-center"><?php echo $obj['expatriados_exterior']['grupo_i']['percentagem'] + $obj['expatriados_exterior']['grupo_ii']['percentagem'] + $obj['expatriados_exterior']['grupo_iii']['percentagem']; ?>%</th>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+  <section>
+    <div class="header">
+      <img src="<?php echo base_url('assets/images/relatorio/page_5.png'); ?>" alt="">
+      <h2>Mudanças na remuneração</h2>
+      <p>
+        Referência: IPCA 3,75%
+      </p>
+    </div>
+    <div class="chart-section">
+      <h4>Presidência</h4>
+      <div class="chart">
+        <title>Mudanças na remuneração fixa</title>
+        <canvas id="myChartBarPresidenciaRemuneracao"></canvas>
+      </div>
+      <div class="chart">
+        <title>Mudanças nos benefícios</title>
+        <canvas id="myChartBarPresidenciaBeneficios"></canvas>
+      </div>
+    </div>
+    <div class="chart-section">
+      <h4>Diretoria</h4>
+      <div class="chart">
+        <title>Mudanças na remuneração fixa</title>
+        <canvas id="myChartBarDiretoriaRemuneracao"></canvas>
+      </div>
+      <div class="chart">
+        <title>Mudanças nos benefícios</title>
+        <canvas id="myChartBarDiretoriaBeneficios"></canvas>
+      </div>
+    </div>
+    <div class="chart-section">
+      <h4>Gerência</h4>
+      <div class="chart">
+        <title>Mudanças na remuneração fixa</title>
+        <canvas id="myChartBarGerenciaRemuneracao"></canvas>
+      </div>
+      <div class="chart">
+        <title>Mudanças nos benefícios</title>
+        <canvas id="myChartBarGerenciaBeneficios"></canvas>
+      </div>
+    </div>
+  </section>
   <script>
-  var ctx = document.getElementById('myChart');
-  var myPieChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-      datasets: [{
-          data: [<?php
-          $data = [];
-          $paises = [];
-        foreach($obj['participantes_por_pais'] as $pos => $pais) {
-          $data[] = $pais->total;
-          $paises[] = "'".$pais->nm_nacionalidade."'";
-        }
-        echo implode(',',$data);
-      ?>],
-          backgroundColor: [
-                    '#04759f',
-                    '#00aeef',
-                    '#60c8ee',
-                    '#444444',
-                    '#acacac',
-                    '#737373'
-                ]
-      }],
+    var ctx = document.getElementById('myChart');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          datasets: [{
+              data: [<?php
+              $data = [];
+              $paises = [];
+            foreach($obj['participantes_por_pais'] as $pos => $pais) {
+              $data[] = $pais->total;
+              $paises[] = "'".$pais->nm_nacionalidade."'";
+            }
+            echo implode(',',$data);
+          ?>],
+            datalabels: {
+                color: '#000',
+                font : {
+                  size: '16'
+                },
+                backgroundColor: '#f1f1f15c',
+                borderRadius: 5
+            },
+            backgroundColor: [
+                      '#04759f',
+                      '#00aeef',
+                      '#60c8ee',
+                      '#444444',
+                      '#acacac',
+                      '#737373'
+                  ]
+          }],
 
-      // These labels appear in the legend and in the tooltips when hovering different arcs
-      labels: [<?php
-           echo implode(',',$paises);
-           ?>
-      ],
-    },
-    options: {
-      cutoutPercentage: 50,
-    }
-});
-</script>
+          // These labels appear in the legend and in the tooltips when hovering different arcs
+          labels: [<?php
+              echo implode(',',$paises);
+              ?>
+          ],
+        },
+        options: {
+          cutoutPercentage: 50,
+        }
+    });
+    var ctx = document.getElementById('myChartBarPresidenciaRemuneracao');
+    var myPieChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: [<?php
+              $total = [];
+              $labels = [];
+            foreach($obj['mudancas_remuneracao_presidencias'] as $pos => $item) {
+              $total[] = $item->total;
+              $labels[] = "'".$item->nm_remuneracao_salario_presidencia."'";
+            }
+            echo implode(',',$labels);
+          ?>],
+          datasets: [{
+              data: [<?php echo implode(',',$total);
+          ?>],
+            label: '',
+            barPercentage: 0.5,
+            backgroundColor: [
+                      '#04759f',
+                      '#00aeef',
+                      '#60c8ee',
+                      '#444444',
+                      '#acacac',
+                      '#737373'
+                  ],
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+            }
+          }],
+        },
+        options: {
+          layout: {
+            padding: {
+              left: 0,
+              right: 30,
+              top: 0,
+              bottom: 0
+            }
+          },
+          scales: {
+              xAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
+                display: false,
+                gridLines: {
+                  offsetGridLines: true
+                }
+              }]
+          },
+          legend: {
+            display: false
+          }
+        }
+    });
+    var ctx = document.getElementById('myChartBarPresidenciaBeneficios');
+    var myPieChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: [<?php
+              $total = [];
+              $labels = [];
+            foreach($obj['mudancas_beneficios_presidencias'] as $pos => $item) {
+              $total[] = $item->total;
+              $labels[] = "'".$item->nm_remuneracao_beneficios_presidencia."'";
+            }
+            echo implode(',',$labels);
+          ?>],
+          datasets: [{
+              data: [<?php echo implode(',',$total);
+          ?>],
+            label: '',
+            barPercentage: 0.5,
+            backgroundColor: [
+                      '#04759f',
+                      '#00aeef',
+                      '#60c8ee',
+                      '#444444',
+                      '#acacac',
+                      '#737373'
+                  ],
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+            }
+          }],
+        },
+        options: {
+          layout: {
+            padding: {
+              left: 0,
+              right: 30,
+              top: 0,
+              bottom: 0
+            }
+          },
+          scales: {
+              xAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
+                display: false,
+                gridLines: {
+                  offsetGridLines: true
+                }
+              }]
+          },
+          legend: {
+            display: false
+          }
+        }
+    });
+    var ctx = document.getElementById('myChartBarDiretoriaRemuneracao');
+    var myPieChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: [<?php
+              $total = [];
+              $labels = [];
+            foreach($obj['mudancas_remuneracao_diretorias'] as $pos => $item) {
+              $total[] = $item->total;
+              $labels[] = "'".$item->nm_remuneracao_salario_diretoria."'";
+            }
+            echo implode(',',$labels);
+          ?>],
+          datasets: [{
+              data: [<?php echo implode(',',$total);
+          ?>],
+            label: '',
+            barPercentage: 0.5,
+            backgroundColor: [
+                      '#04759f',
+                      '#00aeef',
+                      '#60c8ee',
+                      '#444444',
+                      '#acacac',
+                      '#737373'
+                  ],
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+            }
+          }],
+        },
+        options: {
+          layout: {
+            padding: {
+              left: 0,
+              right: 30,
+              top: 0,
+              bottom: 0
+            }
+          },
+          scales: {
+              xAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
+                display: false,
+                gridLines: {
+                  offsetGridLines: true
+                }
+              }]
+          },
+          legend: {
+            display: false
+          }
+        }
+    });
+    var ctx = document.getElementById('myChartBarDiretoriaBeneficios');
+    var myPieChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: [<?php
+              $total = [];
+              $labels = [];
+            foreach($obj['mudancas_beneficios_diretorias'] as $pos => $item) {
+              $total[] = $item->total;
+              $labels[] = "'".$item->nm_remuneracao_beneficios_diretoria."'";
+            }
+            echo implode(',',$labels);
+          ?>],
+          datasets: [{
+              data: [<?php echo implode(',',$total);
+          ?>],
+            label: '',
+            barPercentage: 0.5,
+            backgroundColor: [
+                      '#04759f',
+                      '#00aeef',
+                      '#60c8ee',
+                      '#444444',
+                      '#acacac',
+                      '#737373'
+                  ],
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+            }
+          }],
+        },
+        options: {
+          layout: {
+            padding: {
+              left: 0,
+              right: 30,
+              top: 0,
+              bottom: 0
+            }
+          },
+          scales: {
+              xAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
+                display: false,
+                gridLines: {
+                  offsetGridLines: true
+                }
+              }]
+          },
+          legend: {
+            display: false
+          }
+        }
+    });
+    var ctx = document.getElementById('myChartBarGerenciaRemuneracao');
+    var myPieChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: [<?php
+              $total = [];
+              $labels = [];
+            foreach($obj['mudancas_remuneracao_gerencias'] as $pos => $item) {
+              $total[] = $item->total;
+              $labels[] = "'".$item->nm_remuneracao_salario_gerencia."'";
+            }
+            echo implode(',',$labels);
+          ?>],
+          datasets: [{
+              data: [<?php echo implode(',',$total);
+          ?>],
+            label: '',
+            barPercentage: 0.5,
+            backgroundColor: [
+                      '#04759f',
+                      '#00aeef',
+                      '#60c8ee',
+                      '#444444',
+                      '#acacac',
+                      '#737373'
+                  ],
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+            }
+          }],
+        },
+        options: {
+          layout: {
+            padding: {
+              left: 0,
+              right: 30,
+              top: 0,
+              bottom: 0
+            }
+          },
+          scales: {
+              xAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
+                display: false,
+                gridLines: {
+                  offsetGridLines: true
+                }
+              }]
+          },
+          legend: {
+            display: false
+          }
+        }
+    });
+    var ctx = document.getElementById('myChartBarGerenciaBeneficios');
+    var myPieChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: [<?php
+              $total = [];
+              $labels = [];
+            foreach($obj['mudancas_beneficios_gerencias'] as $pos => $item) {
+              $total[] = $item->total;
+              $labels[] = "'".$item->nm_remuneracao_beneficios_gerencia."'";
+            }
+            echo implode(',',$labels);
+          ?>],
+          datasets: [{
+              data: [<?php echo implode(',',$total);
+          ?>],
+            label: '',
+            barPercentage: 0.5,
+            backgroundColor: [
+                      '#04759f',
+                      '#00aeef',
+                      '#60c8ee',
+                      '#444444',
+                      '#acacac',
+                      '#737373'
+                  ],
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+            }
+          }],
+        },
+        options: {
+          layout: {
+            padding: {
+              left: 0,
+              right: 30,
+              top: 0,
+              bottom: 0
+            }
+          },
+          scales: {
+              xAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
+                display: false,
+                gridLines: {
+                  offsetGridLines: true
+                }
+              }]
+          },
+          legend: {
+            display: false
+          }
+        }
+    });
+  </script>
 </body>
 </html>

@@ -36,7 +36,39 @@ class Relatorio extends CI_Controller {
 			if($item->grupo == 'III')
 			$dados['obj']['numero_funcionarios']['grupo_iii'] = ['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
 		}
-		
+		$excutivos  = $this->pesquisa_model->get_excutivos();
+		foreach($excutivos as $pos => $item){
+			if($item->grupo == 'I')
+				$dados['obj']['excutivos']['grupo_i'] = ['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
+			if($item->grupo == 'II')
+				$dados['obj']['excutivos']['grupo_ii'] = ['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
+			if($item->grupo == 'III')
+				$dados['obj']['excutivos']['grupo_iii'] =['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
+		}
+		$expatriados_brasil  = $this->pesquisa_model->get_expatriados_brasil();
+		foreach($excutivos as $pos => $item){
+			if($item->grupo == 'I')
+				$dados['obj']['expatriados_brasil']['grupo_i'] = ['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
+			if($item->grupo == 'II')
+				$dados['obj']['expatriados_brasil']['grupo_ii'] = ['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
+			if($item->grupo == 'III')
+				$dados['obj']['expatriados_brasil']['grupo_iii'] =['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
+		}
+		$expatriados_exterior  = $this->pesquisa_model->get_expatriados_exterior();
+		foreach($excutivos as $pos => $item){
+			if($item->grupo == 'I')
+				$dados['obj']['expatriados_exterior']['grupo_i'] = ['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
+			if($item->grupo == 'II')
+				$dados['obj']['expatriados_exterior']['grupo_ii'] = ['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
+			if($item->grupo == 'III')
+				$dados['obj']['expatriados_exterior']['grupo_iii'] =['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
+		}
+		$dados['obj']['mudancas_remuneracao_presidencias']  = $this->pesquisa_model->get_mudancas_remuneracao_presidencias();
+		$dados['obj']['mudancas_beneficios_presidencias']  = $this->pesquisa_model->get_mudancas_beneficios_presidencias();
+		$dados['obj']['mudancas_remuneracao_diretorias']  = $this->pesquisa_model->get_mudancas_remuneracao_diretorias();
+		$dados['obj']['mudancas_beneficios_diretorias']  = $this->pesquisa_model->get_mudancas_beneficios_diretorias();
+		$dados['obj']['mudancas_remuneracao_gerencias']  = $this->pesquisa_model->get_mudancas_remuneracao_gerencias();
+		$dados['obj']['mudancas_beneficios_gerencias']  = $this->pesquisa_model->get_mudancas_beneficios_gerencias();
 		$this->load->view('relatorio', $dados);		
 
 	}

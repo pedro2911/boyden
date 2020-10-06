@@ -152,3 +152,51 @@ section ul li {
     height: 300px !important;
     margin: 0 auto;
 }
+.comentario {
+    width: 25%;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 16vh;
+    font-size: 20px;
+}
+.expatriados-table {
+    width: 72% !important;
+    margin-right: 3%;
+    float: left;
+}
+.expatriados-table::after {
+    clear: both;
+    display: block;
+    content: "";
+}
+section .chart-section {
+    width: 100%;
+}
+section .chart-section::after {
+    clear: both;
+    display: block;
+    content: "";
+}
+section .chart-section h4 {
+    width: 100%;
+    color: #00aeef;
+    border-bottom: solid 2px #000;
+}
+section .chart-section .chart {
+    width: 100%;
+    float: left;
+}
+section .chart-section .chart title {
+    display: block;
+    width: 100%;
+    font-weight: 800;
+    padding: 0 15%;
+    text-align: center;
+}
+#myChartBarPresidenciaRemuneracao {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 auto;
+    float: left;
+}
