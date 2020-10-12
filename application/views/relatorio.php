@@ -483,6 +483,272 @@
       </div>
     </div>
   </section>
+  <section>
+    <div class="header">
+      <img src="<?php echo base_url('assets/images/relatorio/page_6.png'); ?>" alt="">
+      <h2>Benefícios</h2>
+    </div>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th class="text-center"><b>Presidência</b></th>
+          <th class="text-center"><b>Diretoria</b></th>
+          <th class="text-center"><b>Gerência</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach($obj['beneficios'] as $pos => $beneficio) { ?>
+        <tr>
+          <th class="text-left">
+            <b><?php echo $pos; ?></b>
+          </th>
+          <th><?php echo isset($beneficio['PRESIDENTE'])?$beneficio['PRESIDENTE']:0; ?>%</th>
+          <th><?php echo isset($beneficio['DIRETOR'])?$beneficio['DIRETOR']:0; ?>%</th>
+          <th><?php echo isset($beneficio['GERENTE'])?$beneficio['GERENTE']:0; ?>%</th>
+        </tr>
+        <?php } ?>
+      </tbody>
+      
+    </table>
+  </section>
+  <section>
+    <div class="header">
+      <img src="<?php echo base_url('assets/images/relatorio/page_6.1.png'); ?>" alt="">
+      <h2>Previdência privada</h2>
+    </div>
+    <br>
+    <table>
+      <tbody>
+        <tr>
+          <th class="text-left"><b>Não oferecem previdência</b></th>
+          <th class="text-center"><b><?php echo $obj['previdencia']['nao']; ?>%</b></th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Oferecem previdência</b>
+          </th>
+          <th><b><?php echo $obj['previdencia']['sim']; ?>%</b></th>
+        </tr>
+      </tbody>
+    </table>
+    <br><br>
+    <table>
+      <thead>
+        <tr>
+          <th>Percentual de contribuição máximo (salário)</th>
+          <th class="text-center"><b>Presidência</b></th>
+          <th class="text-center"><b>Diretoria</b></th>
+          <th class="text-center"><b>Gerência</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-left">
+            <b>Abaixo de 4%</b>
+          </th>
+          <th><?php echo $obj['previdencia_percentual']['PRESIDENTE']['4']; ?>%</th>
+          <th><?php echo $obj['previdencia_percentual']['DIRETOR']['4']; ?>%</th>
+          <th><?php echo $obj['previdencia_percentual']['GERENTE']['4']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>De 4% até 6%</b>
+          </th>
+          <th><?php echo $obj['previdencia_percentual']['PRESIDENTE']['6']; ?>%</th>
+          <th><?php echo $obj['previdencia_percentual']['DIRETOR']['6']; ?>%</th>
+          <th><?php echo $obj['previdencia_percentual']['GERENTE']['6']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Acima de 6% até 8%</b>
+          </th>
+          <th><?php echo $obj['previdencia_percentual']['PRESIDENTE']['8']; ?>%</th>
+          <th><?php echo $obj['previdencia_percentual']['DIRETOR']['8']; ?>%</th>
+          <th><?php echo $obj['previdencia_percentual']['GERENTE']['8']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Acima de 8%</b>
+          </th>
+          <th><?php echo $obj['previdencia_percentual']['PRESIDENTE']['10']; ?>%</th>
+          <th><?php echo $obj['previdencia_percentual']['DIRETOR']['10']; ?>%</th>
+          <th><?php echo $obj['previdencia_percentual']['GERENTE']['10']; ?>%</th>
+        </tr>
+      </tbody>
+      
+    </table>
+  </section>
+  <section>
+    <div class="header">
+      <img src="<?php echo base_url('assets/images/relatorio/page_7.png'); ?>" alt="">
+      <h2>Incentivos de longo prazo</h2>
+    </div>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th>Grupo I</th>
+          <th class="text-center"><b>Presidência</b></th>
+          <th class="text-center"><b>Diretoria</b></th>
+          <th class="text-center"><b>Gerência</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-left">
+            <b>Não Há</b>
+          </th>
+          <th><?php echo 100 - ($obj['incentivos']['I']['STOCK']['PRESIDENTE']['S'] + $obj['incentivos']['I']['PHANTON']['PRESIDENTE']['S'] + $obj['incentivos']['I']['EVOLUCAO']['PRESIDENTE']['S'] + $obj['incentivos']['I']['OUTROS']['PRESIDENTE']['S']); ?>%</th>
+          <th><?php echo 100 - ($obj['incentivos']['I']['STOCK']['DIRETOR']['S'] + $obj['incentivos']['I']['PHANTON']['DIRETOR']['S'] + $obj['incentivos']['I']['EVOLUCAO']['DIRETOR']['S'] + $obj['incentivos']['I']['OUTROS']['DIRETOR']['S']); ?>%</th>
+          <th><?php echo 100 - ($obj['incentivos']['I']['STOCK']['GERENTE']['S'] + $obj['incentivos']['I']['PHANTON']['GERENTE']['S'] + $obj['incentivos']['I']['EVOLUCAO']['GERENTE']['S'] + $obj['incentivos']['I']['OUTROS']['GERENTE']['S']); ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Stock Option</b>
+          </th>
+          <th><?php echo $obj['incentivos']['I']['STOCK']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['I']['STOCK']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['I']['STOCK']['GERENTE']['S']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Phantom Option / RSU (Restricted Share Units)</b>
+          </th>
+          <th><?php echo $obj['incentivos']['I']['PHANTON']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['I']['PHANTON']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['I']['PHANTON']['GERENTE']['S']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Evolução P&L / EBITDA</b>
+          </th>
+          <th><?php echo $obj['incentivos']['I']['EVOLUCAO']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['I']['EVOLUCAO']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['I']['EVOLUCAO']['GERENTE']['S']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Outros</b>
+          </th>
+          <th><?php echo $obj['incentivos']['I']['OUTROS']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['I']['OUTROS']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['I']['OUTROS']['GERENTE']['S']; ?>%</th>
+        </tr>
+      </tbody>
+      
+    </table>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th>Grupo II</th>
+          <th class="text-center"><b>Presidência</b></th>
+          <th class="text-center"><b>Diretoria</b></th>
+          <th class="text-center"><b>Gerência</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-left">
+            <b>Não Há</b>
+          </th>
+          <th><?php echo 100 - ($obj['incentivos']['II']['STOCK']['PRESIDENTE']['S'] + $obj['incentivos']['II']['PHANTON']['PRESIDENTE']['S'] + $obj['incentivos']['II']['EVOLUCAO']['PRESIDENTE']['S'] + $obj['incentivos']['II']['OUTROS']['PRESIDENTE']['S']); ?>%</th>
+          <th><?php echo 100 - ($obj['incentivos']['II']['STOCK']['DIRETOR']['S'] + $obj['incentivos']['II']['PHANTON']['DIRETOR']['S'] + $obj['incentivos']['II']['EVOLUCAO']['DIRETOR']['S'] + $obj['incentivos']['II']['OUTROS']['DIRETOR']['S']); ?>%</th>
+          <th><?php echo 100 - ($obj['incentivos']['II']['STOCK']['GERENTE']['S'] + $obj['incentivos']['II']['PHANTON']['GERENTE']['S'] + $obj['incentivos']['II']['EVOLUCAO']['GERENTE']['S'] + $obj['incentivos']['II']['OUTROS']['GERENTE']['S']); ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Stock Option</b>
+          </th>
+          <th><?php echo $obj['incentivos']['II']['STOCK']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['II']['STOCK']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['II']['STOCK']['GERENTE']['S']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Phantom Option / RSU (Restricted Share Units)</b>
+          </th>
+          <th><?php echo $obj['incentivos']['II']['PHANTON']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['II']['PHANTON']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['II']['PHANTON']['GERENTE']['S']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Evolução P&L / EBITDA</b>
+          </th>
+          <th><?php echo $obj['incentivos']['II']['EVOLUCAO']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['II']['EVOLUCAO']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['II']['EVOLUCAO']['GERENTE']['S']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Outros</b>
+          </th>
+          <th><?php echo $obj['incentivos']['II']['OUTROS']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['II']['OUTROS']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['II']['OUTROS']['GERENTE']['S']; ?>%</th>
+        </tr>
+      </tbody>
+      
+    </table>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th>Grupo III</th>
+          <th class="text-center"><b>Presidência</b></th>
+          <th class="text-center"><b>Diretoria</b></th>
+          <th class="text-center"><b>Gerência</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-left">
+            <b>Não Há</b>
+          </th>
+          <th><?php echo 100 - ($obj['incentivos']['III']['STOCK']['PRESIDENTE']['S'] + $obj['incentivos']['III']['PHANTON']['PRESIDENTE']['S'] + $obj['incentivos']['III']['EVOLUCAO']['PRESIDENTE']['S'] + $obj['incentivos']['III']['OUTROS']['PRESIDENTE']['S']); ?>%</th>
+          <th><?php echo 100 - ($obj['incentivos']['III']['STOCK']['DIRETOR']['S'] + $obj['incentivos']['III']['PHANTON']['DIRETOR']['S'] + $obj['incentivos']['III']['EVOLUCAO']['DIRETOR']['S'] + $obj['incentivos']['III']['OUTROS']['DIRETOR']['S']); ?>%</th>
+          <th><?php echo 100 - ($obj['incentivos']['III']['STOCK']['GERENTE']['S'] + $obj['incentivos']['III']['PHANTON']['GERENTE']['S'] + $obj['incentivos']['III']['EVOLUCAO']['GERENTE']['S'] + $obj['incentivos']['III']['OUTROS']['GERENTE']['S']); ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Stock Option</b>
+          </th>
+          <th><?php echo $obj['incentivos']['III']['STOCK']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['III']['STOCK']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['III']['STOCK']['GERENTE']['S']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Phantom Option / RSU (Restricted Share Units)</b>
+          </th>
+          <th><?php echo $obj['incentivos']['III']['PHANTON']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['III']['PHANTON']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['III']['PHANTON']['GERENTE']['S']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Evolução P&L / EBITDA</b>
+          </th>
+          <th><?php echo $obj['incentivos']['III']['EVOLUCAO']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['III']['EVOLUCAO']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['III']['EVOLUCAO']['GERENTE']['S']; ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Outros</b>
+          </th>
+          <th><?php echo $obj['incentivos']['III']['OUTROS']['PRESIDENTE']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['III']['OUTROS']['DIRETOR']['S']; ?>%</th>
+          <th><?php echo $obj['incentivos']['III']['OUTROS']['GERENTE']['S']; ?>%</th>
+        </tr>
+      </tbody>
+      
+    </table>
+    <br>
+  </section>
   <script>
     var ctx = document.getElementById('myChart');
     var myPieChart = new Chart(ctx, {

@@ -309,6 +309,233 @@ class Pesquisa_model extends CI_Model{
 		group by nm_remuneracao_beneficios_gerencia";
 		return $this->db->query($sql)->result_object();
 	}
+	public function get_beneficios() {
+		$sql = "SELECT nm_beneficio, count(a.id_beneficio) total, tp_cargo FROM boyden.tab_pesquisa_2020_beneficio as a  
+		inner join tab_beneficio as b on
+			a.id_beneficio = b.id_beneficio 
+		inner join tab_pesquisa_2020 as c on
+			a.id_pesquisa = c.id_pesquisa
+		WHERE c.fl_pesquisa_finalizada = 1
+		group by tp_cargo,a.id_beneficio
+		order by tp_cargo,nm_beneficio;";
+		return $this->db->query($sql)->result_object();
+	}
+	public function get_previdencia() {
+		$sql = "SELECT count(ifnull(fl_empresa_previdencia_privada,'Não')) total,ifnull(fl_empresa_previdencia_privada,'Não') fl_empresa_previdencia_privada FROM tab_pesquisa_2020 group by fl_empresa_previdencia_privada";
+		return $this->db->query($sql)->result_object();
+	}
+	public function get_previdencia_percentual() {
+		$sql = "SELECT 
+		count(IFNULL(pc_maxima_contribuicao_presidente,0)) total, 'PRESIDENTE' tipo,
+		( case 
+		when IFNULL(pc_maxima_contribuicao_presidente,0) < 4 then 4 
+		when IFNULL(pc_maxima_contribuicao_presidente,0) >= 4 AND IFNULL(pc_maxima_contribuicao_presidente,0) < 6 then 6
+		when IFNULL(pc_maxima_contribuicao_presidente,0) >= 6 AND IFNULL(pc_maxima_contribuicao_presidente,0) < 8 then 8
+		when IFNULL(pc_maxima_contribuicao_presidente,0) >= 8  then 10
+		 end ) grupo
+		FROM tab_pesquisa_2020 
+		WHERE fl_pesquisa_finalizada = 1
+		 group by ( case 
+		when IFNULL(pc_maxima_contribuicao_presidente,0) < 4 then 4 
+		when IFNULL(pc_maxima_contribuicao_presidente,0) >= 4 AND IFNULL(pc_maxima_contribuicao_presidente,0) < 6 then 6
+		when IFNULL(pc_maxima_contribuicao_presidente,0) >= 6 AND IFNULL(pc_maxima_contribuicao_presidente,0) < 8 then 8
+		when IFNULL(pc_maxima_contribuicao_presidente,0) >= 8  then 10
+		 end )
+		UNION
+		SELECT 
+		count(IFNULL(pc_maxima_contribuicao_diretor,0)) total, 'DIRETOR' tipo,
+		( case 
+		when IFNULL(pc_maxima_contribuicao_diretor,0) < 4 then 4 
+		when IFNULL(pc_maxima_contribuicao_diretor,0) >= 4 AND IFNULL(pc_maxima_contribuicao_diretor,0) < 6 then 6
+		when IFNULL(pc_maxima_contribuicao_diretor,0) >= 6 AND IFNULL(pc_maxima_contribuicao_diretor,0) < 8 then 8
+		when IFNULL(pc_maxima_contribuicao_diretor,0) >= 8  then 10
+		 end ) grupo
+		FROM tab_pesquisa_2020 
+		WHERE fl_pesquisa_finalizada = 1
+		 group by ( case 
+		when IFNULL(pc_maxima_contribuicao_diretor,0) < 4 then 4 
+		when IFNULL(pc_maxima_contribuicao_diretor,0) >= 4 AND IFNULL(pc_maxima_contribuicao_diretor,0) < 6 then 6
+		when IFNULL(pc_maxima_contribuicao_diretor,0) >= 6 AND IFNULL(pc_maxima_contribuicao_diretor,0) < 8 then 8
+		when IFNULL(pc_maxima_contribuicao_diretor,0) >= 8  then 10
+		 end )
+		 UNION
+		 SELECT 
+		count(IFNULL(pc_maxima_contribuicao_gerente,0)) total, 'GERENTE' tipo,
+		( case 
+		when IFNULL(pc_maxima_contribuicao_gerente,0) < 4 then 4 
+		when IFNULL(pc_maxima_contribuicao_gerente,0) >= 4 AND IFNULL(pc_maxima_contribuicao_gerente,0) < 6 then 6
+		when IFNULL(pc_maxima_contribuicao_gerente,0) >= 6 AND IFNULL(pc_maxima_contribuicao_gerente,0) < 8 then 8
+		when IFNULL(pc_maxima_contribuicao_gerente,0) >= 8  then 10
+		 end ) grupo
+		FROM tab_pesquisa_2020 
+		WHERE fl_pesquisa_finalizada = 1
+		 group by ( case 
+		when IFNULL(pc_maxima_contribuicao_gerente,0) < 4 then 4 
+		when IFNULL(pc_maxima_contribuicao_gerente,0) >= 4 AND IFNULL(pc_maxima_contribuicao_gerente,0) < 6 then 6
+		when IFNULL(pc_maxima_contribuicao_gerente,0) >= 6 AND IFNULL(pc_maxima_contribuicao_gerente,0) < 8 then 8
+		when IFNULL(pc_maxima_contribuicao_gerente,0) >= 8  then 10
+		 end )
+		";
+		return $this->db->query($sql)->result_object();
+	}
+	public function get_incentivos() {
+		$sql = "SELECT 'PRESIDENTE' cargo, 'STOCK' tipo, ifnull(fl_stock_option_presidente,'N') valor, count(ifnull(fl_stock_option_presidente,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_stock_option_presidente,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		UNION
+		SELECT 'DIRETOR' cargo, 'STOCK' tipo, ifnull(fl_stock_option_diretor,'N') valor, count(ifnull(fl_stock_option_diretor,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_stock_option_diretor,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		 UNION
+		SELECT 'GERENTE' cargo, 'STOCK' tipo, ifnull(fl_stock_option_gerente,'N') valor, count(ifnull(fl_stock_option_gerente,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_stock_option_gerente,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		 UNION
+		 SELECT 'PRESIDENTE' cargo, 'PHANTON' tipo, ifnull(fl_phantom_option_presidente,'N') valor, count(ifnull(fl_phantom_option_presidente,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_phantom_option_presidente,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		UNION
+		SELECT 'DIRETOR' cargo, 'PHANTON' tipo, ifnull(fl_phantom_option_diretor,'N') valor, count(ifnull(fl_phantom_option_diretor,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_phantom_option_diretor,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		 UNION
+		SELECT 'GERENTE' cargo, 'PHANTON' tipo, ifnull(fl_phantom_option_gerente,'N') valor, count(ifnull(fl_phantom_option_gerente,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_phantom_option_gerente,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		 UNION 
+		 SELECT 'PRESIDENTE' cargo, 'EVOLUCAO' tipo, ifnull(fl_evolucao_presidente,'N') valor, count(ifnull(fl_evolucao_presidente,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_evolucao_presidente,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		UNION
+		SELECT 'DIRETOR' cargo, 'EVOLUCAO' tipo, ifnull(fl_evolucao_diretor,'N') valor, count(ifnull(fl_evolucao_diretor,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_evolucao_diretor,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		 UNION
+		SELECT 'GERENTE' cargo, 'EVOLUCAO' tipo, ifnull(fl_evolucao_gerente,'N') valor, count(ifnull(fl_evolucao_gerente,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_evolucao_gerente,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		  UNION 
+		 SELECT 'PRESIDENTE' cargo, 'OUTROS' tipo, ifnull(fl_outros_presidente,'N') valor, count(ifnull(fl_outros_presidente,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_outros_presidente,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		UNION
+		SELECT 'DIRETOR' cargo, 'OUTROS' tipo, ifnull(fl_outros_diretor,'N') valor, count(ifnull(fl_outros_diretor,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_outros_diretor,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )
+		 UNION
+		SELECT 'GERENTE' cargo, 'OUTROS' tipo, ifnull(fl_outros_gerente,'N') valor, count(ifnull(fl_outros_gerente,'N'))total,  ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end ) grupo
+		FROM tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		group by  ifnull(fl_outros_gerente,'N'), ( case 
+		when vr_faturamento_2019 >= 900000.01 then 'I' 
+		when vr_faturamento_2019 >= 150000.01 AND vr_faturamento_2019 <= 900000.00 then 'II'
+		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= 150000.00 then 'III'
+		 end )";
+		return $this->db->query($sql)->result_object();
+	}
 }
 
 ?>

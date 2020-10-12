@@ -69,6 +69,66 @@ class Relatorio extends CI_Controller {
 		$dados['obj']['mudancas_beneficios_diretorias']  = $this->pesquisa_model->get_mudancas_beneficios_diretorias();
 		$dados['obj']['mudancas_remuneracao_gerencias']  = $this->pesquisa_model->get_mudancas_remuneracao_gerencias();
 		$dados['obj']['mudancas_beneficios_gerencias']  = $this->pesquisa_model->get_mudancas_beneficios_gerencias();
+		$beneficios  = $this->pesquisa_model->get_beneficios();
+		$beneficios_x_cargo = [];
+		foreach($beneficios as $pos => $item){
+			$dados['obj']['beneficios'][$item->nm_beneficio][$item->tp_cargo] = (int) $item->total;
+		}
+		$previdencia  = $this->pesquisa_model->get_previdencia();
+		$total_previdencia = 0;
+		foreach($previdencia as $pos => $item){
+			$total_previdencia += (int) $item->total;
+		}
+		foreach($previdencia as $pos => $item){
+			if($item->fl_empresa_previdencia_privada == 'Sim')
+			$dados['obj']['previdencia']['sim'] = round((int) $item->total * 100 / $total_previdencia,2);
+			else
+			$dados['obj']['previdencia']['nao'] = round((int) $item->total * 100 / $total_previdencia,2);
+		}
+		$previdencia_percentual =  $this->pesquisa_model->get_previdencia_percentual();
+		foreach($previdencia_percentual as $pos => $item){
+			if(!isset($dados['obj']['previdencia_percentual'][$item->tipo]['total'])) {
+				$dados['obj']['previdencia_percentual'][$item->tipo]['total'] = (int) $item->total;
+			} else {
+				$dados['obj']['previdencia_percentual'][$item->tipo]['total'] += (int) $item->total;
+			}
+			$dados['obj']['previdencia_percentual'][$item->tipo][$item->grupo] = (int) $item->total;			
+		}
+		foreach($dados['obj']['previdencia_percentual'] as $pos => $item){
+			$dados['obj']['previdencia_percentual'][$pos]['4'] = round($item['4'] * 100 / $item['total'],2);
+			$dados['obj']['previdencia_percentual'][$pos]['6'] = round($item['6'] * 100 / $item['total'],2);
+			$dados['obj']['previdencia_percentual'][$pos]['8'] = round($item['8'] * 100 / $item['total'],2);
+			$dados['obj']['previdencia_percentual'][$pos]['10'] = round($item['10'] * 100 / $item['total'],2);
+		}
+
+		$incentivos =  $this->pesquisa_model->get_incentivos();
+		foreach($incentivos  as $pos => $item){
+			if(!isset($dados['obj']['incentivos'][$item->grupo][$item->tipo][$item->cargo]['total'])) {
+				$dados['obj']['incentivos'][$item->grupo][$item->tipo][$item->cargo]['total'] = (int) $item->total;
+			} else {
+				$dados['obj']['incentivos'][$item->grupo][$item->tipo][$item->cargo]['total'] += (int) $item->total;
+			}
+		}
+		foreach($incentivos  as $pos => $item){
+			$dados['obj']['incentivos'][$item->grupo][$item->tipo][$item->cargo][$item->valor] = (int) $item->total;
+		}
+		foreach($dados['obj']['incentivos']  as $pos => $item){
+			foreach($item  as $pos2 => $item2){
+				foreach($item2  as $pos3 => $item3){
+					if(!isset($item3['S'])) {
+						$dados['obj']['incentivos'][$pos][$pos2][$pos3]['S'] = 0;
+					}
+					else {
+						$dados['obj']['incentivos'][$pos][$pos2][$pos3]['S'] = round($item3['S'] * 100 / $item3['total'],2);
+					}
+					if(!isset($item3['N'])){
+						$dados['obj']['incentivos'][$pos][$pos2][$pos3]['N'] = 0;
+					} else {
+						$dados['obj']['incentivos'][$pos][$pos2][$pos3]['N'] = round($item3['N'] * 100 / $item3['total'],2);
+					}
+				}
+			}
+		}
 		$this->load->view('relatorio', $dados);		
 
 	}
