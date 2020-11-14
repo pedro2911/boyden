@@ -845,7 +845,7 @@
           ?>
           <tr>
             <?php if(!$print) { $print = true;  ?>
-              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['PRESIDENTE_DIRETOR']);?> ">
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['II']['PRESIDENTE_DIRETOR']);?> ">
                 <b class="text-left">GRUPO II</b><br>
                 <span class="font-12">
                 Salário base
@@ -880,7 +880,7 @@
           ?>
           <tr>
             <?php if(!$print) { $print = true;  ?>
-              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['PRESIDENTE_DIRETOR']);?> ">
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['III']['PRESIDENTE_DIRETOR']);?> ">
                 <b class="text-left">GRUPO III</b><br>
                 <span class="font-12">
                 Salário base
@@ -955,7 +955,7 @@
           ?>
           <tr>
             <?php if(!$print) { $print = true;  ?>
-              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['GERENTE']);?> ">
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['II']['GERENTE']);?> ">
                 <b class="text-left">GRUPO II</b><br>
                 <span class="font-12">
                 Salário base
@@ -990,7 +990,7 @@
           ?>
           <tr>
             <?php if(!$print) { $print = true;  ?>
-              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['GERENTE']);?> ">
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['III']['GERENTE']);?> ">
                 <b class="text-left">GRUPO III</b><br>
                 <span class="font-12">
                 Salário base
@@ -1011,6 +1011,9 @@
     </div>
   </section>
   <script>
+
+    //Chart.defaults.global.defaultFontSize = '50';
+
     var ctx = document.getElementById('myChart');
     var myPieChart = new Chart(ctx, {
         type: 'pie',
@@ -1031,7 +1034,7 @@
                   size: '16'
                 },
                 backgroundColor: '#f1f1f15c',
-                borderRadius: 5
+                borderRadius: 5,
             },
             backgroundColor: [
                       '#04759f',
@@ -1051,6 +1054,11 @@
         },
         options: {
           cutoutPercentage: 50,
+          legend: {
+            labels: {
+                fontSize: 20
+            }
+          }
         }
     });
     var ctx = document.getElementById('myChartBarPresidenciaRemuneracao');

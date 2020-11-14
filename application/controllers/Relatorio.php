@@ -71,6 +71,7 @@ class Relatorio extends CI_Controller {
 		$dados['obj']['mudancas_beneficios_gerencias']  = $this->pesquisa_model->get_mudancas_beneficios_gerencias();
 		$beneficios  = $this->pesquisa_model->get_beneficios();
 		$total_cargos = $this->pesquisa_model->get_total_por_cargo();
+		
 		$beneficios_x_cargo = [];
 		foreach($beneficios as $pos => $item){
 			$dados['obj']['beneficios'][$item->nm_beneficio][$item->tp_cargo] = (int) $item->total;
