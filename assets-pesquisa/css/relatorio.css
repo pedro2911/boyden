@@ -101,21 +101,18 @@ section table thead th {
     padding: 10px;
     font-size: 18px;
 }
-section table thead th.font-12 {
-    font-size: 12px !important;
-}
 section table tbody {
     border-top: solid 4px #343a40;
 }
-section table tbody th {
+section table tbody th, section table tbody td {
     border: solid 1px #343a40;
     text-align: center;
     font-weight: 400;
 }
-section table tbody th:first-child {
+section table tbody th:first-child, section table tbody td:first-child {
     border-left: none;
 }
-section table tbody th:last-child {
+section table tbody th:last-child, section table tbody td:last-child {
     border-right: none;
 }
 section table tbody th h4 {
@@ -123,6 +120,9 @@ section table tbody th h4 {
 }
 section table tbody th span {
     font-size: 13px;
+}
+section table td[rowspan] {
+    border-bottom: none;
 }
 section table tfoot {
     background: #00aeef;
@@ -146,6 +146,19 @@ section ul li {
     width: 28%;
     margin-left: 3%;
     color: #000;
+}
+.font-12{
+    font-size: 12px !important;
+}
+.font-10{
+    font-size: 10px !important;
+}
+.border-bonus-bottom-table {
+    border-bottom: solid 4px #343a40;
+}
+.border-bonus-table {
+    border-bottom: solid 4px #343a40;
+    border-right: none;
 }
 #myChart {
     width: auto !important;

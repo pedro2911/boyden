@@ -504,9 +504,9 @@
           <th class="text-left">
             <b><?php echo $pos; ?></b>
           </th>
-          <th><?php echo isset($beneficio['PRESIDENTE'])?$beneficio['PRESIDENTE']:0; ?>%</th>
-          <th><?php echo isset($beneficio['DIRETOR'])?$beneficio['DIRETOR']:0; ?>%</th>
-          <th><?php echo isset($beneficio['GERENTE'])?$beneficio['GERENTE']:0; ?>%</th>
+          <th><?php echo isset($beneficio['PRESIDENTE'])?round($beneficio['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0; ?>%</th>
+          <th><?php echo isset($beneficio['DIRETOR'])?round($beneficio['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0; ?>%</th>
+          <th><?php echo isset($beneficio['GERENTE'])?round($beneficio['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0; ?>%</th>
         </tr>
         <?php } ?>
       </tbody>
@@ -748,6 +748,267 @@
       
     </table>
     <br>
+  </section>
+  <section>
+    <div class="header">
+      <img src="<?php echo base_url('assets/images/relatorio/page_7.1.png');  ?>" alt="">
+      <h2>Incentivos de longo prazo</h2>
+      <?php foreach($obj['bonus'] as $pos => $cargo) { ?>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="text-center"><b><?php echo $pos;?></b></th>
+            <th class="text-center"><b>Meta</b></th>
+            <th class="text-center"><b>Máximo</b></th>
+            <th class="text-center"><b>Pago</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach($cargo as $pos1 => $bonus) { 
+              $print = false;
+              foreach($bonus as $pos2 => $tipo) { 
+          ?>
+          <tr <?php echo ($pos2 == '3º Quartil'? 'class="border-bonus-bottom-table"':'');?>>
+            <?php if(!$print) {?>
+              <td class="text-center border-bonus-table" rowspan="3">
+                <b>GRUPO <?php echo($pos1); $print = true;?></b>
+              </td>
+            <?php } ?>
+            <td class="text-center"><b><?php echo($pos2);?></b></td>
+            <?php foreach($tipo as $pos3 => $valor) { ?>
+              <td><?php echo($valor);?></td>
+            <?php } ?>
+          </tr>
+          <?php }
+          }
+          ?>
+        </tbody>
+      </table>
+      <br>
+      <?php } ?>
+    </div>
+    <br>
+  </section>
+  <section>
+    <div class="header">
+      <img src="<?php echo base_url('assets/images/relatorio/page_8.png');  ?>" alt="">
+      <h2>Tabelas salariais / Presidentes / Diretores</h2>
+      <table>
+        <thead>
+          <tr>
+            <th width='100px'></th>
+            <th width='300px' class="text-left font-12"><b>Posição</b></th>
+            <th class="text-center font-12"><b>1º Quartil</b></th>
+            <th class="text-center font-12"><b>Mediana</b></th>
+            <th class="text-center font-12"><b>3º Quartil</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $print = false;  
+          foreach($obj['tabela_salariais']['I']['PRESIDENTE_DIRETOR'] as $cargo => $valores) {    
+          ?>
+          <tr>
+            <?php if(!$print) { $print = true;  ?>
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['PRESIDENTE_DIRETOR']);?> ">
+                <b class="text-left">GRUPO I</b><br>
+                <span class="font-12">
+                Salário base
+                mensal (em R$)
+                </span>
+              </td>
+            <?php } ?>
+            <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
+            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
+            <td class="font-12"><?php echo($valores['mediana']);?></td>
+            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+          </tr>
+          <?php 
+          }
+          ?>
+        </tbody>
+      </table>
+      <br>
+      <table>
+        <thead>
+          <tr>
+          <th width='100px'></th>
+            <th width='300px' class="text-left font-12"><b>Posição</b></th>
+            <th class="text-center font-12"><b>1º Quartil</b></th>
+            <th class="text-center font-12"><b>Mediana</b></th>
+            <th class="text-center font-12"><b>3º Quartil</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $print = false;  
+          foreach($obj['tabela_salariais']['II']['PRESIDENTE_DIRETOR'] as $cargo => $valores) {    
+          ?>
+          <tr>
+            <?php if(!$print) { $print = true;  ?>
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['PRESIDENTE_DIRETOR']);?> ">
+                <b class="text-left">GRUPO II</b><br>
+                <span class="font-12">
+                Salário base
+                mensal (em R$)
+                </span>
+              </td>
+            <?php } ?>
+            <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
+            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
+            <td class="font-12"><?php echo($valores['mediana']);?></td>
+            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+          </tr>
+          <?php 
+          }
+          ?>
+        </tbody>
+      </table>
+      <br>
+      <table>
+        <thead>
+          <tr>
+            <th width='100px'></th>
+            <th width='300px' class="text-left font-12"><b>Posição</b></th>
+            <th class="text-center font-12"><b>1º Quartil</b></th>
+            <th class="text-center font-12"><b>Mediana</b></th>
+            <th class="text-center font-12"><b>3º Quartil</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $print = false;  
+          foreach($obj['tabela_salariais']['III']['PRESIDENTE_DIRETOR'] as $cargo => $valores) {    
+          ?>
+          <tr>
+            <?php if(!$print) { $print = true;  ?>
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['PRESIDENTE_DIRETOR']);?> ">
+                <b class="text-left">GRUPO III</b><br>
+                <span class="font-12">
+                Salário base
+                mensal (em R$)
+                </span>
+              </td>
+            <?php } ?>
+            <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
+            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
+            <td class="font-12"><?php echo($valores['mediana']);?></td>
+            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+          </tr>
+          <?php 
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <div class="header">
+      <img src="<?php echo base_url('assets/images/relatorio/page_9.png');  ?>" alt="">
+      <h2>Tabelas salariais / Gerentes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th width='100px'></th>
+            <th width='300px' class="text-left font-12"><b>Posição</b></th>
+            <th class="text-center font-12"><b>1º Quartil</b></th>
+            <th class="text-center font-12"><b>Mediana</b></th>
+            <th class="text-center font-12"><b>3º Quartil</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $print = false;  
+          foreach($obj['tabela_salariais']['I']['GERENTE'] as $cargo => $valores) {    
+          ?>
+          <tr>
+            <?php if(!$print) { $print = true;  ?>
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['GERENTE']);?> ">
+                <b class="text-left">GRUPO I</b><br>
+                <span class="font-12">
+                Salário base
+                mensal (em R$)
+                </span>
+              </td>
+            <?php } ?>
+            <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
+            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
+            <td class="font-12"><?php echo($valores['mediana']);?></td>
+            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+          </tr>
+          <?php 
+          }
+          ?>
+        </tbody>
+      </table>
+      <br>
+      <table>
+        <thead>
+          <tr>
+          <th width='100px'></th>
+            <th width='300px' class="text-left font-12"><b>Posição</b></th>
+            <th class="text-center font-12"><b>1º Quartil</b></th>
+            <th class="text-center font-12"><b>Mediana</b></th>
+            <th class="text-center font-12"><b>3º Quartil</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $print = false;  
+          foreach($obj['tabela_salariais']['II']['GERENTE'] as $cargo => $valores) {    
+          ?>
+          <tr>
+            <?php if(!$print) { $print = true;  ?>
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['GERENTE']);?> ">
+                <b class="text-left">GRUPO II</b><br>
+                <span class="font-12">
+                Salário base
+                mensal (em R$)
+                </span>
+              </td>
+            <?php } ?>
+            <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
+            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
+            <td class="font-12"><?php echo($valores['mediana']);?></td>
+            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+          </tr>
+          <?php 
+          }
+          ?>
+        </tbody>
+      </table>
+      <br>
+      <table>
+        <thead>
+          <tr>
+            <th width='100px'></th>
+            <th width='300px' class="text-left font-12"><b>Posição</b></th>
+            <th class="text-center font-12"><b>1º Quartil</b></th>
+            <th class="text-center font-12"><b>Mediana</b></th>
+            <th class="text-center font-12"><b>3º Quartil</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $print = false;  
+          foreach($obj['tabela_salariais']['III']['GERENTE'] as $cargo => $valores) {    
+          ?>
+          <tr>
+            <?php if(!$print) { $print = true;  ?>
+              <td class="text-left align-top pt-3" rowspan="<?php echo count($obj['tabela_salariais']['I']['GERENTE']);?> ">
+                <b class="text-left">GRUPO III</b><br>
+                <span class="font-12">
+                Salário base
+                mensal (em R$)
+                </span>
+              </td>
+            <?php } ?>
+            <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
+            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
+            <td class="font-12"><?php echo($valores['mediana']);?></td>
+            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+          </tr>
+          <?php 
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
   </section>
   <script>
     var ctx = document.getElementById('myChart');

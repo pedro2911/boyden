@@ -70,9 +70,13 @@ class Relatorio extends CI_Controller {
 		$dados['obj']['mudancas_remuneracao_gerencias']  = $this->pesquisa_model->get_mudancas_remuneracao_gerencias();
 		$dados['obj']['mudancas_beneficios_gerencias']  = $this->pesquisa_model->get_mudancas_beneficios_gerencias();
 		$beneficios  = $this->pesquisa_model->get_beneficios();
+		$total_cargos = $this->pesquisa_model->get_total_por_cargo();
 		$beneficios_x_cargo = [];
 		foreach($beneficios as $pos => $item){
 			$dados['obj']['beneficios'][$item->nm_beneficio][$item->tp_cargo] = (int) $item->total;
+		}
+		foreach($total_cargos as $pos => $item){
+			$dados['obj']['total_cargos'][$item->tp_cargo] = (int) $item->total;
 		}
 		$previdencia  = $this->pesquisa_model->get_previdencia();
 		$total_previdencia = 0;
@@ -128,6 +132,20 @@ class Relatorio extends CI_Controller {
 					}
 				}
 			}
+		}
+
+		$bonus =  $this->pesquisa_model->get_bonus();
+		foreach($bonus  as $pos => $item){
+			$dados['obj']['bonus'][$item->cargo][$item->grupo]['1º Quartil'][$item->tipo] = $item->quartil_1;
+			$dados['obj']['bonus'][$item->cargo][$item->grupo]['Mediana'][$item->tipo] = $item->mediana;
+			$dados['obj']['bonus'][$item->cargo][$item->grupo]['3º Quartil'][$item->tipo] = $item->quartil_3;
+		}
+
+		$tabela_salariais =  $this->pesquisa_model->get_tabela_salariais();
+		foreach($tabela_salariais  as $pos => $item){
+			$dados['obj']['tabela_salariais'][$item->grupo][$item->tp_cargo][$item->nm_cargo]['quartil_1'] = $item->quartil_1;
+			$dados['obj']['tabela_salariais'][$item->grupo][$item->tp_cargo][$item->nm_cargo]['mediana'] = $item->mediana;
+			$dados['obj']['tabela_salariais'][$item->grupo][$item->tp_cargo][$item->nm_cargo]['quartil_3'] = $item->quartil_3;
 		}
 		$this->load->view('relatorio', $dados);		
 
