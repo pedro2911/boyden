@@ -187,16 +187,16 @@ class Pesquisa_model extends CI_Model{
 
 	}
 	public $value=[
-		'I'=>["maior"=>1000000000.01],
-		'II'=>["maior"=>150000.01,"menor"=>1000000000.00],
-		'III'=>["menor"=>150000.00]
+		'I'   => ["maior"=>1000000000.01],
+		'II'  => ["maior"=>150000000.01,"menor"=>1000000000.00],
+		'III' => ["menor"=>150000000.00]
 	];
 		
 	public function get_totais_por_grupos(){
 		$sql = "select count(vr_faturamento_2019) as total,  case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo 
 		from tab_pesquisa_2020 
 		where fl_pesquisa_finalizada = 1
@@ -222,9 +222,9 @@ class Pesquisa_model extends CI_Model{
 		round(sum( IFNULL(vr_faturamento_2019,0)),2) as total2019,
 		round(((sum(IFNULL(vr_faturamento_2019,0)) - sum(IFNULL(vr_faturamento_2018,0)))/sum(IFNULL(vr_faturamento_2018,0))) *100,2) percentagem,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo 
 		from tab_pesquisa_2020 
 		where fl_pesquisa_finalizada = 1 
@@ -236,9 +236,9 @@ class Pesquisa_model extends CI_Model{
 		sum( IFNULL(nr_total_colaboradores_2019,0)) as total2019,
 		round(((sum(IFNULL(nr_total_colaboradores_2019,0)) - sum(IFNULL(nr_total_colaboradores_2018,0)))/sum(IFNULL(nr_total_colaboradores_2018,0))) *100,0) percentagem,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo 
 		from tab_pesquisa_2020 
 		where fl_pesquisa_finalizada = 1 
@@ -250,9 +250,9 @@ class Pesquisa_model extends CI_Model{
 		round(sum( IFNULL(nr_posicao_executivos_2019_diretoria+nr_posicao_executivos_2019_gerencia,0)),2) as total2019,
 		IFNULL(round(((sum(IFNULL(nr_posicao_executivos_2019_diretoria+nr_posicao_executivos_2019_gerencia,0)) - sum(IFNULL(nr_posicao_executivos_2018_diretoria+nr_posicao_executivos_2018_gerencia,0)))/sum(IFNULL(nr_posicao_executivos_2018_diretoria+nr_posicao_executivos_2018_gerencia,0))) *100,0),0) percentagem,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		from tab_pesquisa_2020 as a
 		where fl_pesquisa_finalizada = 1 
@@ -265,9 +265,9 @@ class Pesquisa_model extends CI_Model{
 		round(sum( IFNULL(nr_expatriados_brasil_2019,0)),2) as total2019,
 		IFNULL(round(((sum(IFNULL(nr_expatriados_brasil_2019,0)) - sum(IFNULL(nr_expatriados_brasil_2018,0)))/sum(IFNULL(nr_expatriados_brasil_2018,0))) *100,0),0) percentagem,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		from tab_pesquisa_2020 as a
 		where fl_pesquisa_finalizada = 1 
@@ -280,9 +280,9 @@ class Pesquisa_model extends CI_Model{
 		round(sum( IFNULL(nr_executivos_exterior_2019,0)),2) as total2019,
 		IFNULL(round(((sum(IFNULL(nr_executivos_exterior_2019,0)) - sum(IFNULL(nr_executivos_exterior_2018,0)))/sum(IFNULL(nr_executivos_exterior_2018,0))) *100,0),0) percentagem,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		from tab_pesquisa_2020 as a
 		where fl_pesquisa_finalizada = 1 
@@ -406,108 +406,108 @@ class Pesquisa_model extends CI_Model{
 	public function get_incentivos() {
 		$sql = "SELECT 'PRESIDENTE' cargo, 'STOCK' tipo, ifnull(fl_stock_option_presidente,'N') valor, count(ifnull(fl_stock_option_presidente,'N'))total,  ( 
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_stock_option_presidente,'N'), grupo
 		UNION
 		SELECT 'DIRETOR' cargo, 'STOCK' tipo, ifnull(fl_stock_option_diretor,'N') valor, count(ifnull(fl_stock_option_diretor,'N'))total,  ( case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_stock_option_diretor,'N'), grupo
 		 UNION
 		SELECT 'GERENTE' cargo, 'STOCK' tipo, ifnull(fl_stock_option_gerente,'N') valor, count(ifnull(fl_stock_option_gerente,'N'))total,  ( case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_stock_option_gerente,'N'), grupo
 		 UNION
 		 SELECT 'PRESIDENTE' cargo, 'PHANTON' tipo, ifnull(fl_phantom_option_presidente,'N') valor, count(ifnull(fl_phantom_option_presidente,'N'))total,  ( case 
-		 when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		 when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		 when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		 when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_phantom_option_presidente,'N'), grupo
 		UNION
 		SELECT 'DIRETOR' cargo, 'PHANTON' tipo, ifnull(fl_phantom_option_diretor,'N') valor, count(ifnull(fl_phantom_option_diretor,'N'))total,  ( case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_phantom_option_diretor,'N'), grupo
 		 UNION
 		SELECT 'GERENTE' cargo, 'PHANTON' tipo, ifnull(fl_phantom_option_gerente,'N') valor, count(ifnull(fl_phantom_option_gerente,'N'))total,  ( case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_phantom_option_gerente,'N'), grupo
 		 UNION 
 		 SELECT 'PRESIDENTE' cargo, 'EVOLUCAO' tipo, ifnull(fl_evolucao_presidente,'N') valor, count(ifnull(fl_evolucao_presidente,'N'))total,  ( case 
-		 when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		 when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		 when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		 when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		 when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		 when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_evolucao_presidente,'N'), grupo
 		UNION
 		SELECT 'DIRETOR' cargo, 'EVOLUCAO' tipo, ifnull(fl_evolucao_diretor,'N') valor, count(ifnull(fl_evolucao_diretor,'N'))total,  ( case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_evolucao_diretor,'N'), grupo
 		 UNION
 		SELECT 'GERENTE' cargo, 'EVOLUCAO' tipo, ifnull(fl_evolucao_gerente,'N') valor, count(ifnull(fl_evolucao_gerente,'N'))total,  ( case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_evolucao_gerente,'N'),grupo
 		  UNION 
 		 SELECT 'PRESIDENTE' cargo, 'OUTROS' tipo, ifnull(fl_outros_presidente,'N') valor, count(ifnull(fl_outros_presidente,'N'))total,  ( case 
-		 when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		 when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		 when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		 when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_outros_presidente,'N'), grupo
 		UNION
 		SELECT 'DIRETOR' cargo, 'OUTROS' tipo, ifnull(fl_outros_diretor,'N') valor, count(ifnull(fl_outros_diretor,'N'))total,  ( case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_outros_diretor,'N'), grupo
 		 UNION
 		SELECT 'GERENTE' cargo, 'OUTROS' tipo, ifnull(fl_outros_gerente,'N') valor, count(ifnull(fl_outros_gerente,'N'))total,  ( case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end ) grupo
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -520,9 +520,9 @@ class Pesquisa_model extends CI_Model{
 		round(((max(pc_alvo_presidencia)-min(pc_alvo_presidencia))*0.75)+min(pc_alvo_presidencia),2)  quartil_3,
 		'META' tipo,'Presidência' cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -533,9 +533,9 @@ class Pesquisa_model extends CI_Model{
 		round(((max(pc_maximo_presidencia)-min(pc_maximo_presidencia))*0.75)+min(pc_maximo_presidencia),2)  quartil_3,
 		'MAXIMO' tipo, 'Presidência' cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -546,9 +546,9 @@ class Pesquisa_model extends CI_Model{
 		round(((max(pc_efetivamente_pago_presidencia)-min(pc_efetivamente_pago_presidencia))*0.75)+min(pc_efetivamente_pago_presidencia),2)  quartil_3,
 		'PAGO' tipo, 'Presidência' cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -561,9 +561,9 @@ class Pesquisa_model extends CI_Model{
 		round(((max(pc_alvo_diretoria)-min(pc_alvo_presidencia))*0.75)+min(pc_alvo_diretoria),2)  quartil_3,
 		'META' tipo,'Diretoria' cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -574,9 +574,9 @@ class Pesquisa_model extends CI_Model{
 		round(((max(pc_maximo_diretoria)-min(pc_maximo_diretoria))*0.75)+min(pc_maximo_diretoria),2)  quartil_3,
 		'MAXIMO' tipo, 'Diretoria' cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -587,9 +587,9 @@ class Pesquisa_model extends CI_Model{
 		round(((max(pc_efetivamente_pago_diretoria)-min(pc_efetivamente_pago_diretoria))*0.75)+min(pc_efetivamente_pago_diretoria),2)  quartil_3,
 		'PAGO' tipo, 'Diretoria' cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -602,9 +602,9 @@ class Pesquisa_model extends CI_Model{
 		round(((max(pc_alvo_diretoria)-min(pc_alvo_gerencia))*0.75)+min(pc_alvo_gerencia),2)  quartil_3,
 		'META' tipo,'Gerência' cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -615,9 +615,9 @@ class Pesquisa_model extends CI_Model{
 		round(((max(pc_maximo_gerencia)-min(pc_maximo_gerencia))*0.75)+min(pc_maximo_gerencia),2)  quartil_3,
 		'MAXIMO' tipo, 'Gerência' cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -628,9 +628,9 @@ class Pesquisa_model extends CI_Model{
 		round(((max(pc_efetivamente_pago_gerencia)-min(pc_efetivamente_pago_gerencia))*0.75)+min(pc_efetivamente_pago_gerencia),2)  quartil_3,
 		'PAGO' tipo, 'Gerência' cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
@@ -646,9 +646,9 @@ class Pesquisa_model extends CI_Model{
 		when tp_cargo = 'GERENTE' THEN tp_cargo
 		END tp_cargo, LOWER(nm_cargo) nm_cargo,
 		case 
-		when vr_faturamento_2019 >= ".$this->value['I']['maior']." then 'I' 
-		when vr_faturamento_2019 >= ".$this->value['II']['maior']." AND vr_faturamento_2019 <= ".$this->value['II']['menor']." then 'II'
-		when IFNULL(vr_faturamento_2019,0) >= 0.00 AND IFNULL(vr_faturamento_2019,0) <= ".$this->value['III']['menor']." then 'III'
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
+		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['II']['maior']." AND (vr_faturamento_2019+vr_outros_valores) <= ".$this->value['II']['menor']." then 'II'
+		when IFNULL((vr_faturamento_2019+vr_outros_valores),0) >= 0.00 AND IFNULL((vr_faturamento_2019+vr_outros_valores),0) <= ".$this->value['III']['menor']." then 'III'
 		 end grupo
 		FROM boyden.tab_pesquisa_2020 as a
 		INNER JOIN boyden.tab_pesquisa_2020_cargo as b ON a.id_pesquisa=b.id_pesquisa

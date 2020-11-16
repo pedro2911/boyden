@@ -57,12 +57,12 @@
       <tbody>
         <tr>
           <th><b>I</b></th>
-          <th>Acima de R$ 900 milhões</th>
+          <th>Acima de R$ 1 bilhão</th>
           <th><?php echo $obj['table_1']['grupo_i']; ?></th>
         </tr>
         <tr>
           <th><b>II</b></th>
-          <th>Acima de R$ 150 milhões até R$ 900 milhões</th>
+          <th>Acima de R$ 150 milhões até R$ 1 bilhão</th>
           <th><?php echo $obj['table_1']['grupo_ii']; ?></th>
         </tr>
         <tr>
@@ -132,29 +132,29 @@
         <tr>
           <th class="text-left">
             <h4>Grupo I</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Acima de R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['faturamento_bruto']['grupo_i']['total2018']; ?></th>
-          <th><?php echo $obj['faturamento_bruto']['grupo_i']['total2019']; ?></th>
-          <th><?php echo $obj['faturamento_bruto']['grupo_i']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['faturamento_bruto']['grupo_i']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['faturamento_bruto']['grupo_i']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['faturamento_bruto']['grupo_i']['percentagem'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <h4>Grupo II</h4>
-            <span>Acima de R$ 150 milhões até R$ 900 milhões</span>
+            <span>Acima de R$ 150 milhões até R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['faturamento_bruto']['grupo_ii']['total2018']; ?></th>
-          <th><?php echo $obj['faturamento_bruto']['grupo_ii']['total2019']; ?></th>
-          <th><?php echo $obj['faturamento_bruto']['grupo_ii']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['faturamento_bruto']['grupo_ii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['faturamento_bruto']['grupo_ii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['faturamento_bruto']['grupo_ii']['percentagem'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <h4>Grupo III</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Até R$ 150 milhões</span>
           </th>
-          <th><?php echo $obj['faturamento_bruto']['grupo_iii']['total2018']; ?></th>
-          <th><?php echo $obj['faturamento_bruto']['grupo_iii']['total2019']; ?></th>
-          <th><?php echo $obj['faturamento_bruto']['grupo_iii']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['faturamento_bruto']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['faturamento_bruto']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['faturamento_bruto']['grupo_iii']['percentagem'],2,",","."); ?>%</th>
         </tr>
       </tbody>
       <tfoot>
@@ -162,9 +162,12 @@
           <th>
             <b>Total</b>
           </th>
-          <th class="text-center"><?php echo $obj['faturamento_bruto']['grupo_i']['total2018'] + $obj['faturamento_bruto']['grupo_ii']['total2018'] + $obj['faturamento_bruto']['grupo_iii']['total2018']; ?></th>
-          <th class="text-center"><?php echo $obj['faturamento_bruto']['grupo_i']['total2019'] + $obj['faturamento_bruto']['grupo_ii']['total2019'] + $obj['faturamento_bruto']['grupo_iii']['total2019']; ?></th>
-          <th class="text-center"><?php echo $obj['faturamento_bruto']['grupo_i']['percentagem'] + $obj['faturamento_bruto']['grupo_ii']['percentagem'] + $obj['faturamento_bruto']['grupo_iii']['percentagem']; ?>%</th>
+          <th class="text-center"><?php echo number_format($obj['faturamento_bruto']['grupo_i']['total2018'] + $obj['faturamento_bruto']['grupo_ii']['total2018'] + $obj['faturamento_bruto']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format($obj['faturamento_bruto']['grupo_i']['total2019'] + $obj['faturamento_bruto']['grupo_ii']['total2019'] + $obj['faturamento_bruto']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format(
+              round(((($obj['faturamento_bruto']['grupo_i']['total2019'] + $obj['faturamento_bruto']['grupo_ii']['total2019'] + $obj['faturamento_bruto']['grupo_iii']['total2019'])-
+              ($obj['faturamento_bruto']['grupo_i']['total2018'] + $obj['faturamento_bruto']['grupo_ii']['total2018'] + $obj['faturamento_bruto']['grupo_iii']['total2018']))
+              /($obj['faturamento_bruto']['grupo_i']['total2018'] + $obj['faturamento_bruto']['grupo_ii']['total2018'] + $obj['faturamento_bruto']['grupo_iii']['total2018']) * 100),2),2,",","."); ?>%</th>
         </tr>
       </tfoot>
     </table>
@@ -192,29 +195,29 @@
         <tr>
           <th class="text-left">
             <h4>Grupo I</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Acima de R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_i']['total2018']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_i']['total2019']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_i']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['numero_funcionarios']['grupo_i']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['numero_funcionarios']['grupo_i']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['numero_funcionarios']['grupo_i']['percentagem'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <h4>Grupo II</h4>
-            <span>Acima de R$ 150 milhões até R$ 900 milhões</span>
+            <span>Acima de R$ 150 milhões até R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_ii']['total2018']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_ii']['total2019']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_ii']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['numero_funcionarios']['grupo_ii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['numero_funcionarios']['grupo_ii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['numero_funcionarios']['grupo_ii']['percentagem'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <h4>Grupo III</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Acima de R$ 150 milhões</span>
           </th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_iii']['total2018']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_iii']['total2019']; ?></th>
-          <th><?php echo $obj['numero_funcionarios']['grupo_iii']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['numero_funcionarios']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['numero_funcionarios']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['numero_funcionarios']['grupo_iii']['percentagem'],2,",","."); ?>%</th>
         </tr>
       </tbody>
       <tfoot>
@@ -222,9 +225,11 @@
           <th>
             <b>Total</b>
           </th>
-          <th class="text-center"><?php echo $obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018']; ?></th>
-          <th class="text-center"><?php echo $obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019']; ?></th>
-          <th class="text-center"><?php echo $obj['numero_funcionarios']['grupo_i']['percentagem'] + $obj['numero_funcionarios']['grupo_ii']['percentagem'] + $obj['numero_funcionarios']['grupo_iii']['percentagem']; ?>%</th>
+          <th class="text-center"><?php echo number_format($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format($obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format(round((
+            ($obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019'])-($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018'])
+          )/($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018'])*100,2),2,",","."); ?>%</th>
         </tr>
       </tfoot>
     </table>
@@ -277,35 +282,35 @@
         <tr>
           <th>
             <h4>Grupo I</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Acima de R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['excutivos']['grupo_i']['total2018']; ?></th>
-          <th><?php echo round($obj['excutivos']['grupo_i']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2018'],2); ?>%</th>
-          <th><?php echo$obj['excutivos']['grupo_i']['total2019']; ?></th>
-          <th><?php echo round($obj['excutivos']['grupo_i']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2019'],2); ?>%</th>
-          <th><?php echo round((round($obj['excutivos']['grupo_i']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2019'],2) - round($obj['excutivos']['grupo_i']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2018'],2)) / round($obj['excutivos']['grupo_i']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2018'],2),2); ?>%</th>
+          <th><?php echo number_format($obj['excutivos']['grupo_i']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format(round($obj['excutivos']['grupo_i']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2018'],2),2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['excutivos']['grupo_i']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format(round($obj['excutivos']['grupo_i']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2019'],2),2,",","."); ?>%</th>
+          <th><?php echo number_format(round((round($obj['excutivos']['grupo_i']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2019'],2) - round($obj['excutivos']['grupo_i']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2018'],2)) / round($obj['excutivos']['grupo_i']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_i']['total2018'],2),2),2,",","."); ?>%</th>
         </tr>
         <tr>
           <th>
             <h4>Grupo II</h4>
-            <span>Acima de R$ 150 milhões até R$ 900 milhões</span>
+            <span>Acima de R$ 150 milhões até R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['excutivos']['grupo_ii']['total2018']; ?></th>
-          <th><?php echo round($obj['excutivos']['grupo_ii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2018'],2); ?>%</th>
-          <th><?php echo$obj['excutivos']['grupo_ii']['total2019']; ?></th>
-          <th><?php echo round($obj['excutivos']['grupo_ii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2019'],2); ?>%</th>
-          <th><?php echo round((round($obj['excutivos']['grupo_ii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2019'],2) - round($obj['excutivos']['grupo_ii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2018'],2)) / round($obj['excutivos']['grupo_ii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2018'],2),2); ?>%</th>
+          <th><?php echo number_format($obj['excutivos']['grupo_ii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format(round($obj['excutivos']['grupo_ii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2018'],2),2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['excutivos']['grupo_ii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format(round($obj['excutivos']['grupo_ii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2019'],2),2,",","."); ?>%</th>
+          <th><?php echo number_format(round((round($obj['excutivos']['grupo_ii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2019'],2) - round($obj['excutivos']['grupo_ii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2018'],2)) / round($obj['excutivos']['grupo_ii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_ii']['total2018'],2),2),2,",","."); ?>%</th>
         </tr>
         <tr>
           <th>
             <h4>Grupo III</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Até R$ 150 milhões</span>
           </th>
-          <th><?php echo $obj['excutivos']['grupo_iii']['total2018']; ?></th>
-          <th><?php echo round($obj['excutivos']['grupo_iii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2018'],2); ?>%</th>
-          <th><?php echo$obj['excutivos']['grupo_iii']['total2019']; ?></th>
-          <th><?php echo round($obj['excutivos']['grupo_iii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2019'],2); ?>%</th>
-          <th><?php echo round((round($obj['excutivos']['grupo_iii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2019'],2) - round($obj['excutivos']['grupo_iii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2018'],2)) / round($obj['excutivos']['grupo_iii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2018'],2),2); ?>%</th>
+          <th><?php echo number_format($obj['excutivos']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format(round($obj['excutivos']['grupo_iii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2018'],2),2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['excutivos']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format(round($obj['excutivos']['grupo_iii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2019'],2),2,",","."); ?>%</th>
+          <th><?php echo number_format(round((round($obj['excutivos']['grupo_iii']['total2019'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2019'],2) - round($obj['excutivos']['grupo_iii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2018'],2)) / round($obj['excutivos']['grupo_iii']['total2018'] * 100 / $obj['numero_funcionarios']['grupo_iii']['total2018'],2),2),2,",","."); ?>%</th>
         </tr>
       </tbody>
       <tfoot>
@@ -313,11 +318,13 @@
           <th>
             <b>Total</b>
           </th>
-          <th class="text-center"><?php echo $obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']; ?></th>
-          <th class="text-center"><?php echo round(($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018']),2); ?>%</th>
-          <th class="text-center"><?php echo $obj['excutivos']['grupo_i']['total2019'] + $obj['excutivos']['grupo_ii']['total2019'] + $obj['excutivos']['grupo_iii']['total2019']; ?></th>
-          <th class="text-center"><?php echo round(($obj['excutivos']['grupo_i']['total2019'] + $obj['excutivos']['grupo_ii']['total2019'] + $obj['excutivos']['grupo_iii']['total2019']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019']),2); ?>%</th>
-          <th class="text-center"><?php echo round((round(($obj['excutivos']['grupo_i']['total2019'] + $obj['excutivos']['grupo_ii']['total2019'] + $obj['excutivos']['grupo_iii']['total2019']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019']),2) - round(($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018']),2)) / round(($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018']),2),2); ?>%</th>
+          <th class="text-center"><?php echo number_format($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format(round(($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2018'] + $obj['numero_funcionarios']['grupo_ii']['total2018'] + $obj['numero_funcionarios']['grupo_iii']['total2018']),2),2,",","."); ?>%</th>
+          <th class="text-center"><?php echo number_format($obj['excutivos']['grupo_i']['total2019'] + $obj['excutivos']['grupo_ii']['total2019'] + $obj['excutivos']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format(round(($obj['excutivos']['grupo_i']['total2019'] + $obj['excutivos']['grupo_ii']['total2019'] + $obj['excutivos']['grupo_iii']['total2019']) * 100 / ($obj['numero_funcionarios']['grupo_i']['total2019'] + $obj['numero_funcionarios']['grupo_ii']['total2019'] + $obj['numero_funcionarios']['grupo_iii']['total2019']),2),2,",","."); ?>%</th>
+          <th class="text-center"><?php echo number_format(round(
+            (($obj['excutivos']['grupo_i']['total2019'] + $obj['excutivos']['grupo_ii']['total2019'] + $obj['excutivos']['grupo_iii']['total2019'])-($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018']))/($obj['excutivos']['grupo_i']['total2018'] + $obj['excutivos']['grupo_ii']['total2018'] + $obj['excutivos']['grupo_iii']['total2018'])*100
+            ,2),2,",","."); ?>%</th>
         </tr>
       </tfoot>
     </table>
@@ -350,29 +357,29 @@
         <tr>
           <th class="text-left">
             <h4>Grupo I</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Acima de R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['expatriados_brasil']['grupo_i']['total2018']; ?></th>
-          <th><?php echo $obj['expatriados_brasil']['grupo_i']['total2019']; ?></th>
-          <th><?php echo $obj['expatriados_brasil']['grupo_i']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['expatriados_brasil']['grupo_i']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_brasil']['grupo_i']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_brasil']['grupo_i']['percentagem'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <h4>Grupo II</h4>
-            <span>Acima de R$ 150 milhões até R$ 900 milhões</span>
+            <span>Acima de R$ 150 milhões até R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['expatriados_brasil']['grupo_ii']['total2018']; ?></th>
-          <th><?php echo $obj['expatriados_brasil']['grupo_ii']['total2019']; ?></th>
-          <th><?php echo $obj['expatriados_brasil']['grupo_ii']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['expatriados_brasil']['grupo_ii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_brasil']['grupo_ii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_brasil']['grupo_ii']['percentagem'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <h4>Grupo III</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Até R$ 150 milhões</span>
           </th>
-          <th><?php echo $obj['expatriados_brasil']['grupo_iii']['total2018']; ?></th>
-          <th><?php echo $obj['expatriados_brasil']['grupo_iii']['total2019']; ?></th>
-          <th><?php echo $obj['expatriados_brasil']['grupo_iii']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['expatriados_brasil']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_brasil']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_brasil']['grupo_iii']['percentagem'],2,",","."); ?>%</th>
         </tr>
       </tbody>
       <tfoot>
@@ -380,9 +387,11 @@
           <th>
             <b>Total</b>
           </th>
-          <th class="text-center"><?php echo $obj['expatriados_brasil']['grupo_i']['total2018'] + $obj['expatriados_brasil']['grupo_ii']['total2018'] + $obj['expatriados_brasil']['grupo_iii']['total2018']; ?></th>
-          <th class="text-center"><?php echo $obj['expatriados_brasil']['grupo_i']['total2019'] + $obj['expatriados_brasil']['grupo_ii']['total2019'] + $obj['expatriados_brasil']['grupo_iii']['total2019']; ?></th>
-          <th class="text-center"><?php echo $obj['expatriados_brasil']['grupo_i']['percentagem'] + $obj['numero_fuexpatriados_brasilncionarios']['grupo_ii']['percentagem'] + $obj['expatriados_brasil']['grupo_iii']['percentagem']; ?>%</th>
+          <th class="text-center"><?php echo number_format($obj['expatriados_brasil']['grupo_i']['total2018'] + $obj['expatriados_brasil']['grupo_ii']['total2018'] + $obj['expatriados_brasil']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format($obj['expatriados_brasil']['grupo_i']['total2019'] + $obj['expatriados_brasil']['grupo_ii']['total2019'] + $obj['expatriados_brasil']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format(round(
+            (($obj['expatriados_brasil']['grupo_i']['total2019'] + $obj['expatriados_brasil']['grupo_ii']['total2019'] + $obj['expatriados_brasil']['grupo_iii']['total2019'])-($obj['expatriados_brasil']['grupo_i']['total2018'] + $obj['expatriados_brasil']['grupo_ii']['total2018'] + $obj['expatriados_brasil']['grupo_iii']['total2018']))/($obj['expatriados_brasil']['grupo_i']['total2018'] + $obj['expatriados_brasil']['grupo_ii']['total2018'] + $obj['expatriados_brasil']['grupo_iii']['total2018'])*100
+            ,2),2,",","."); ?>%</th>
         </tr>
       </tfoot>
     </table>
@@ -404,29 +413,29 @@
         <tr>
           <th class="text-left">
             <h4>Grupo I</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Acima de R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['expatriados_exterior']['grupo_i']['total2018']; ?></th>
-          <th><?php echo $obj['expatriados_exterior']['grupo_i']['total2019']; ?></th>
-          <th><?php echo $obj['expatriados_exterior']['grupo_i']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['expatriados_exterior']['grupo_i']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_exterior']['grupo_i']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_exterior']['grupo_i']['percentagem'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <h4>Grupo II</h4>
-            <span>Acima de R$ 150 milhões até R$ 900 milhões</span>
+            <span>Acima de R$ 150 milhões até R$ 1 bilhão</span>
           </th>
-          <th><?php echo $obj['expatriados_exterior']['grupo_ii']['total2018']; ?></th>
-          <th><?php echo $obj['expatriados_exterior']['grupo_ii']['total2019']; ?></th>
-          <th><?php echo $obj['expatriados_exterior']['grupo_ii']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['expatriados_exterior']['grupo_ii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_exterior']['grupo_ii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_exterior']['grupo_ii']['percentagem'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <h4>Grupo III</h4>
-            <span>Acima de R$ 900 milhões</span>
+            <span>Até R$ 150 milhões</span>
           </th>
-          <th><?php echo $obj['expatriados_exterior']['grupo_iii']['total2018']; ?></th>
-          <th><?php echo $obj['expatriados_exterior']['grupo_iii']['total2019']; ?></th>
-          <th><?php echo $obj['expatriados_exterior']['grupo_iii']['percentagem']; ?>%</th>
+          <th><?php echo number_format($obj['expatriados_exterior']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_exterior']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th><?php echo number_format($obj['expatriados_exterior']['grupo_iii']['percentagem'],2,",","."); ?>%</th>
         </tr>
       </tbody>
       <tfoot>
@@ -434,9 +443,11 @@
           <th>
             <b>Total</b>
           </th>
-          <th class="text-center"><?php echo $obj['expatriados_exterior']['grupo_i']['total2018'] + $obj['expatriados_exterior']['grupo_ii']['total2018'] + $obj['expatriados_exterior']['grupo_iii']['total2018']; ?></th>
-          <th class="text-center"><?php echo $obj['expatriados_exterior']['grupo_i']['total2019'] + $obj['expatriados_exterior']['grupo_ii']['total2019'] + $obj['expatriados_exterior']['grupo_iii']['total2019']; ?></th>
-          <th class="text-center"><?php echo $obj['expatriados_exterior']['grupo_i']['percentagem'] + $obj['expatriados_exterior']['grupo_ii']['percentagem'] + $obj['expatriados_exterior']['grupo_iii']['percentagem']; ?>%</th>
+          <th class="text-center"><?php echo number_format($obj['expatriados_exterior']['grupo_i']['total2018'] + $obj['expatriados_exterior']['grupo_ii']['total2018'] + $obj['expatriados_exterior']['grupo_iii']['total2018'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format($obj['expatriados_exterior']['grupo_i']['total2019'] + $obj['expatriados_exterior']['grupo_ii']['total2019'] + $obj['expatriados_exterior']['grupo_iii']['total2019'],2,",","."); ?></th>
+          <th class="text-center"><?php echo number_format(round(
+            (($obj['expatriados_exterior']['grupo_i']['total2019'] + $obj['expatriados_exterior']['grupo_ii']['total2019'] + $obj['expatriados_exterior']['grupo_iii']['total2019'])-($obj['expatriados_exterior']['grupo_i']['total2018'] + $obj['expatriados_exterior']['grupo_ii']['total2018'] + $obj['expatriados_exterior']['grupo_iii']['total2018']))/($obj['expatriados_exterior']['grupo_i']['total2018'] + $obj['expatriados_exterior']['grupo_ii']['total2018'] + $obj['expatriados_exterior']['grupo_iii']['total2018'])*100
+            ,2),2,",","."); ?>%</th>
         </tr>
       </tfoot>
     </table>
@@ -504,9 +515,9 @@
           <th class="text-left">
             <b><?php echo $pos; ?></b>
           </th>
-          <th><?php echo isset($beneficio['PRESIDENTE'])?round($beneficio['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0; ?>%</th>
-          <th><?php echo isset($beneficio['DIRETOR'])?round($beneficio['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0; ?>%</th>
-          <th><?php echo isset($beneficio['GERENTE'])?round($beneficio['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0; ?>%</th>
+          <th><?php echo number_format(isset($beneficio['PRESIDENTE'])?round($beneficio['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0,2,",","."); ?>%</th>
+          <th><?php echo number_format(isset($beneficio['DIRETOR'])?round($beneficio['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0,2,",","."); ?>%</th>
+          <th><?php echo number_format(isset($beneficio['GERENTE'])?round($beneficio['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0,2,",","."); ?>%</th>
         </tr>
         <?php } ?>
       </tbody>
@@ -523,13 +534,13 @@
       <tbody>
         <tr>
           <th class="text-left"><b>Não oferecem previdência</b></th>
-          <th class="text-center"><b><?php echo $obj['previdencia']['nao']; ?>%</b></th>
+          <th class="text-center"><b><?php echo number_format($obj['previdencia']['nao'],2,",","."); ?>%</b></th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Oferecem previdência</b>
           </th>
-          <th><b><?php echo $obj['previdencia']['sim']; ?>%</b></th>
+          <th><b><?php echo number_format($obj['previdencia']['sim'],2,",","."); ?>%</b></th>
         </tr>
       </tbody>
     </table>
@@ -548,33 +559,33 @@
           <th class="text-left">
             <b>Abaixo de 4%</b>
           </th>
-          <th><?php echo $obj['previdencia_percentual']['PRESIDENTE']['4']; ?>%</th>
-          <th><?php echo $obj['previdencia_percentual']['DIRETOR']['4']; ?>%</th>
-          <th><?php echo $obj['previdencia_percentual']['GERENTE']['4']; ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['PRESIDENTE']['4'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['DIRETOR']['4'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['GERENTE']['4'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>De 4% até 6%</b>
           </th>
-          <th><?php echo $obj['previdencia_percentual']['PRESIDENTE']['6']; ?>%</th>
-          <th><?php echo $obj['previdencia_percentual']['DIRETOR']['6']; ?>%</th>
-          <th><?php echo $obj['previdencia_percentual']['GERENTE']['6']; ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['PRESIDENTE']['6'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['DIRETOR']['6'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['GERENTE']['6'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Acima de 6% até 8%</b>
           </th>
-          <th><?php echo $obj['previdencia_percentual']['PRESIDENTE']['8']; ?>%</th>
-          <th><?php echo $obj['previdencia_percentual']['DIRETOR']['8']; ?>%</th>
-          <th><?php echo $obj['previdencia_percentual']['GERENTE']['8']; ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['PRESIDENTE']['8'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['DIRETOR']['8'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['GERENTE']['8'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Acima de 8%</b>
           </th>
-          <th><?php echo $obj['previdencia_percentual']['PRESIDENTE']['10']; ?>%</th>
-          <th><?php echo $obj['previdencia_percentual']['DIRETOR']['10']; ?>%</th>
-          <th><?php echo $obj['previdencia_percentual']['GERENTE']['10']; ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['PRESIDENTE']['10'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['DIRETOR']['10'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_percentual']['GERENTE']['10'],2,",","."); ?>%</th>
         </tr>
       </tbody>
       
@@ -600,41 +611,41 @@
           <th class="text-left">
             <b>Não Há</b>
           </th>
-          <th><?php echo 100 - ($obj['incentivos']['I']['STOCK']['PRESIDENTE']['S'] + $obj['incentivos']['I']['PHANTON']['PRESIDENTE']['S'] + $obj['incentivos']['I']['EVOLUCAO']['PRESIDENTE']['S'] + $obj['incentivos']['I']['OUTROS']['PRESIDENTE']['S']); ?>%</th>
-          <th><?php echo 100 - ($obj['incentivos']['I']['STOCK']['DIRETOR']['S'] + $obj['incentivos']['I']['PHANTON']['DIRETOR']['S'] + $obj['incentivos']['I']['EVOLUCAO']['DIRETOR']['S'] + $obj['incentivos']['I']['OUTROS']['DIRETOR']['S']); ?>%</th>
-          <th><?php echo 100 - ($obj['incentivos']['I']['STOCK']['GERENTE']['S'] + $obj['incentivos']['I']['PHANTON']['GERENTE']['S'] + $obj['incentivos']['I']['EVOLUCAO']['GERENTE']['S'] + $obj['incentivos']['I']['OUTROS']['GERENTE']['S']); ?>%</th>
+          <th><?php echo number_format(100 - ($obj['incentivos']['I']['STOCK']['PRESIDENTE']['S'] + $obj['incentivos']['I']['PHANTON']['PRESIDENTE']['S'] + $obj['incentivos']['I']['EVOLUCAO']['PRESIDENTE']['S'] + $obj['incentivos']['I']['OUTROS']['PRESIDENTE']['S']),2,",","."); ?>%</th>
+          <th><?php echo number_format(100 - ($obj['incentivos']['I']['STOCK']['DIRETOR']['S'] + $obj['incentivos']['I']['PHANTON']['DIRETOR']['S'] + $obj['incentivos']['I']['EVOLUCAO']['DIRETOR']['S'] + $obj['incentivos']['I']['OUTROS']['DIRETOR']['S']),2,",","."); ?>%</th>
+          <th><?php echo number_format(100 - ($obj['incentivos']['I']['STOCK']['GERENTE']['S'] + $obj['incentivos']['I']['PHANTON']['GERENTE']['S'] + $obj['incentivos']['I']['EVOLUCAO']['GERENTE']['S'] + $obj['incentivos']['I']['OUTROS']['GERENTE']['S']),2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Stock Option</b>
           </th>
-          <th><?php echo $obj['incentivos']['I']['STOCK']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['I']['STOCK']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['I']['STOCK']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['STOCK']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['STOCK']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['STOCK']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Phantom Option / RSU (Restricted Share Units)</b>
           </th>
-          <th><?php echo $obj['incentivos']['I']['PHANTON']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['I']['PHANTON']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['I']['PHANTON']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['PHANTON']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['PHANTON']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['PHANTON']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Evolução P&L / EBITDA</b>
           </th>
-          <th><?php echo $obj['incentivos']['I']['EVOLUCAO']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['I']['EVOLUCAO']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['I']['EVOLUCAO']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['EVOLUCAO']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['EVOLUCAO']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['EVOLUCAO']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Outros</b>
           </th>
-          <th><?php echo $obj['incentivos']['I']['OUTROS']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['I']['OUTROS']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['I']['OUTROS']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['OUTROS']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['OUTROS']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['I']['OUTROS']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
       </tbody>
       
@@ -654,41 +665,41 @@
           <th class="text-left">
             <b>Não Há</b>
           </th>
-          <th><?php echo 100 - ($obj['incentivos']['II']['STOCK']['PRESIDENTE']['S'] + $obj['incentivos']['II']['PHANTON']['PRESIDENTE']['S'] + $obj['incentivos']['II']['EVOLUCAO']['PRESIDENTE']['S'] + $obj['incentivos']['II']['OUTROS']['PRESIDENTE']['S']); ?>%</th>
-          <th><?php echo 100 - ($obj['incentivos']['II']['STOCK']['DIRETOR']['S'] + $obj['incentivos']['II']['PHANTON']['DIRETOR']['S'] + $obj['incentivos']['II']['EVOLUCAO']['DIRETOR']['S'] + $obj['incentivos']['II']['OUTROS']['DIRETOR']['S']); ?>%</th>
-          <th><?php echo 100 - ($obj['incentivos']['II']['STOCK']['GERENTE']['S'] + $obj['incentivos']['II']['PHANTON']['GERENTE']['S'] + $obj['incentivos']['II']['EVOLUCAO']['GERENTE']['S'] + $obj['incentivos']['II']['OUTROS']['GERENTE']['S']); ?>%</th>
+          <th><?php echo number_format(100 - ($obj['incentivos']['II']['STOCK']['PRESIDENTE']['S'] + $obj['incentivos']['II']['PHANTON']['PRESIDENTE']['S'] + $obj['incentivos']['II']['EVOLUCAO']['PRESIDENTE']['S'] + $obj['incentivos']['II']['OUTROS']['PRESIDENTE']['S']),2,",","."); ?>%</th>
+          <th><?php echo number_format(100 - ($obj['incentivos']['II']['STOCK']['DIRETOR']['S'] + $obj['incentivos']['II']['PHANTON']['DIRETOR']['S'] + $obj['incentivos']['II']['EVOLUCAO']['DIRETOR']['S'] + $obj['incentivos']['II']['OUTROS']['DIRETOR']['S']),2,",","."); ?>%</th>
+          <th><?php echo number_format(100 - ($obj['incentivos']['II']['STOCK']['GERENTE']['S'] + $obj['incentivos']['II']['PHANTON']['GERENTE']['S'] + $obj['incentivos']['II']['EVOLUCAO']['GERENTE']['S'] + $obj['incentivos']['II']['OUTROS']['GERENTE']['S']),2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Stock Option</b>
           </th>
-          <th><?php echo $obj['incentivos']['II']['STOCK']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['II']['STOCK']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['II']['STOCK']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['STOCK']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['STOCK']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['STOCK']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Phantom Option / RSU (Restricted Share Units)</b>
           </th>
-          <th><?php echo $obj['incentivos']['II']['PHANTON']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['II']['PHANTON']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['II']['PHANTON']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['PHANTON']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['PHANTON']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['PHANTON']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Evolução P&L / EBITDA</b>
           </th>
-          <th><?php echo $obj['incentivos']['II']['EVOLUCAO']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['II']['EVOLUCAO']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['II']['EVOLUCAO']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['EVOLUCAO']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['EVOLUCAO']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['EVOLUCAO']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Outros</b>
           </th>
-          <th><?php echo $obj['incentivos']['II']['OUTROS']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['II']['OUTROS']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['II']['OUTROS']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['OUTROS']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['OUTROS']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['II']['OUTROS']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
       </tbody>
       
@@ -708,41 +719,41 @@
           <th class="text-left">
             <b>Não Há</b>
           </th>
-          <th><?php echo 100 - ($obj['incentivos']['III']['STOCK']['PRESIDENTE']['S'] + $obj['incentivos']['III']['PHANTON']['PRESIDENTE']['S'] + $obj['incentivos']['III']['EVOLUCAO']['PRESIDENTE']['S'] + $obj['incentivos']['III']['OUTROS']['PRESIDENTE']['S']); ?>%</th>
-          <th><?php echo 100 - ($obj['incentivos']['III']['STOCK']['DIRETOR']['S'] + $obj['incentivos']['III']['PHANTON']['DIRETOR']['S'] + $obj['incentivos']['III']['EVOLUCAO']['DIRETOR']['S'] + $obj['incentivos']['III']['OUTROS']['DIRETOR']['S']); ?>%</th>
-          <th><?php echo 100 - ($obj['incentivos']['III']['STOCK']['GERENTE']['S'] + $obj['incentivos']['III']['PHANTON']['GERENTE']['S'] + $obj['incentivos']['III']['EVOLUCAO']['GERENTE']['S'] + $obj['incentivos']['III']['OUTROS']['GERENTE']['S']); ?>%</th>
+          <th><?php echo number_format(100 - ($obj['incentivos']['III']['STOCK']['PRESIDENTE']['S'] + $obj['incentivos']['III']['PHANTON']['PRESIDENTE']['S'] + $obj['incentivos']['III']['EVOLUCAO']['PRESIDENTE']['S'] + $obj['incentivos']['III']['OUTROS']['PRESIDENTE']['S']),2,",","."); ?>%</th>
+          <th><?php echo number_format(100 - ($obj['incentivos']['III']['STOCK']['DIRETOR']['S'] + $obj['incentivos']['III']['PHANTON']['DIRETOR']['S'] + $obj['incentivos']['III']['EVOLUCAO']['DIRETOR']['S'] + $obj['incentivos']['III']['OUTROS']['DIRETOR']['S']),2,",","."); ?>%</th>
+          <th><?php echo number_format(100 - ($obj['incentivos']['III']['STOCK']['GERENTE']['S'] + $obj['incentivos']['III']['PHANTON']['GERENTE']['S'] + $obj['incentivos']['III']['EVOLUCAO']['GERENTE']['S'] + $obj['incentivos']['III']['OUTROS']['GERENTE']['S']),2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Stock Option</b>
           </th>
-          <th><?php echo $obj['incentivos']['III']['STOCK']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['III']['STOCK']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['III']['STOCK']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['STOCK']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['STOCK']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['STOCK']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Phantom Option / RSU (Restricted Share Units)</b>
           </th>
-          <th><?php echo $obj['incentivos']['III']['PHANTON']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['III']['PHANTON']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['III']['PHANTON']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['PHANTON']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['PHANTON']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['PHANTON']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Evolução P&L / EBITDA</b>
           </th>
-          <th><?php echo $obj['incentivos']['III']['EVOLUCAO']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['III']['EVOLUCAO']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['III']['EVOLUCAO']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['EVOLUCAO']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['EVOLUCAO']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['EVOLUCAO']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
         <tr>
           <th class="text-left">
             <b>Outros</b>
           </th>
-          <th><?php echo $obj['incentivos']['III']['OUTROS']['PRESIDENTE']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['III']['OUTROS']['DIRETOR']['S']; ?>%</th>
-          <th><?php echo $obj['incentivos']['III']['OUTROS']['GERENTE']['S']; ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['OUTROS']['PRESIDENTE']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['OUTROS']['DIRETOR']['S'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['incentivos']['III']['OUTROS']['GERENTE']['S'],2,",","."); ?>%</th>
         </tr>
       </tbody>
       
@@ -752,7 +763,10 @@
   <section>
     <div class="header">
       <img src="<?php echo base_url('assets/images/relatorio/page_7.1.png');  ?>" alt="">
-      <h2>Incentivos de longo prazo</h2>
+      <h2>Bônus anual</h2>
+      <p>
+        (Número de salários mensais por ano)
+      </p>
       <?php foreach($obj['bonus'] as $pos => $cargo) { ?>
       <table>
         <thead>
@@ -777,7 +791,7 @@
             <?php } ?>
             <td class="text-center"><b><?php echo($pos2);?></b></td>
             <?php foreach($tipo as $pos3 => $valor) { ?>
-              <td><?php echo($valor);?></td>
+              <td><?php echo number_format($valor,2,",",".");?></td>
             <?php } ?>
           </tr>
           <?php }
@@ -819,9 +833,9 @@
               </td>
             <?php } ?>
             <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
-            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
-            <td class="font-12"><?php echo($valores['mediana']);?></td>
-            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_1'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['mediana'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_3'],2,",",".");?></td>
           </tr>
           <?php 
           }
@@ -854,9 +868,9 @@
               </td>
             <?php } ?>
             <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
-            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
-            <td class="font-12"><?php echo($valores['mediana']);?></td>
-            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_1'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['mediana'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_3'],2,",",".");?></td>
           </tr>
           <?php 
           }
@@ -889,9 +903,9 @@
               </td>
             <?php } ?>
             <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
-            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
-            <td class="font-12"><?php echo($valores['mediana']);?></td>
-            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_1'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['mediana'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_3'],2,",",".");?></td>
           </tr>
           <?php 
           }
@@ -929,9 +943,9 @@
               </td>
             <?php } ?>
             <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
-            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
-            <td class="font-12"><?php echo($valores['mediana']);?></td>
-            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_1'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['mediana'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_3'],2,",",".");?></td>
           </tr>
           <?php 
           }
@@ -964,9 +978,9 @@
               </td>
             <?php } ?>
             <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
-            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
-            <td class="font-12"><?php echo($valores['mediana']);?></td>
-            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_1'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['mediana'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_3'],2,",",".");?></td>
           </tr>
           <?php 
           }
@@ -999,9 +1013,9 @@
               </td>
             <?php } ?>
             <td class="text-left font-12 text-capitalize"><b><?php echo($cargo);?></b></td>
-            <td class="font-12"><?php echo($valores['quartil_1']);?></td>
-            <td class="font-12"><?php echo($valores['mediana']);?></td>
-            <td class="font-12"><?php echo($valores['quartil_3']);?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_1'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['mediana'],2,",",".");?></td>
+            <td class="font-12"><?php echo number_format($valores['quartil_3'],2,",",".");?></td>
           </tr>
           <?php 
           }
