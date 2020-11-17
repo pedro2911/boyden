@@ -780,11 +780,11 @@
         </thead>
         <tbody>
           <?php foreach($cargo as $pos1 => $bonus) { 
-              $print = false;
-              foreach($bonus as $pos2 => $tipo) { 
+                  $print = false;
+                  foreach($bonus as $pos2 => $tipo) { 
           ?>
           <tr <?php echo ($pos2 == '3º Quartil'? 'class="border-bonus-bottom-table"':'');?>>
-            <?php if(!$print) {?>
+              <?php if(!$print) {?>
               <td class="text-center border-bonus-table" rowspan="3">
                 <b>GRUPO <?php echo($pos1); $print = true;?></b>
               </td>
@@ -804,7 +804,7 @@
     </div>
     <br>
   </section>
-  <section>
+  <section> 
     <div class="header">
       <img src="<?php echo base_url('assets/images/relatorio/page_8.png');  ?>" alt="">
       <h2>Tabelas salariais / Presidentes / Diretores</h2>

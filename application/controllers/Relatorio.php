@@ -46,7 +46,7 @@ class Relatorio extends CI_Controller {
 				$dados['obj']['excutivos']['grupo_iii'] =['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
 		}
 		$expatriados_brasil  = $this->pesquisa_model->get_expatriados_brasil();
-		foreach($excutivos as $pos => $item){
+		foreach($expatriados_brasil as $pos => $item){
 			if($item->grupo == 'I')
 				$dados['obj']['expatriados_brasil']['grupo_i'] = ['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
 			if($item->grupo == 'II')
@@ -55,7 +55,7 @@ class Relatorio extends CI_Controller {
 				$dados['obj']['expatriados_brasil']['grupo_iii'] =['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
 		}
 		$expatriados_exterior  = $this->pesquisa_model->get_expatriados_exterior();
-		foreach($excutivos as $pos => $item){
+		foreach($expatriados_exterior as $pos => $item){
 			if($item->grupo == 'I')
 				$dados['obj']['expatriados_exterior']['grupo_i'] = ['total2018' => $item->total2018, 'total2019' => $item->total2019, 'percentagem' => $item->percentagem];
 			if($item->grupo == 'II')
@@ -82,22 +82,24 @@ class Relatorio extends CI_Controller {
 		$previdencia  = $this->pesquisa_model->get_previdencia();
 		$total_previdencia = 0;
 		foreach($previdencia as $pos => $item){
-			$total_previdencia += (int) $item->total;
+			$total_previdencia = $total_previdencia + intval($item->total);
 		}
+		$dados['obj']['previdencia']['sim']= 0;
+		$dados['obj']['previdencia']['nao']= 0;
 		foreach($previdencia as $pos => $item){
 			if($item->fl_empresa_previdencia_privada == 'Sim')
-			$dados['obj']['previdencia']['sim'] = round((int) $item->total * 100 / $total_previdencia,2);
+			$dados['obj']['previdencia']['sim'] += round(intval($item->total) * 100 / $total_previdencia,2);
 			else
-			$dados['obj']['previdencia']['nao'] = round((int) $item->total * 100 / $total_previdencia,2);
+			$dados['obj']['previdencia']['nao'] += round(intval( $item->total) * 100 / $total_previdencia,2);
 		}
 		$previdencia_percentual =  $this->pesquisa_model->get_previdencia_percentual();
 		foreach($previdencia_percentual as $pos => $item){
 			if(!isset($dados['obj']['previdencia_percentual'][$item->tipo]['total'])) {
-				$dados['obj']['previdencia_percentual'][$item->tipo]['total'] = (int) $item->total;
+				$dados['obj']['previdencia_percentual'][$item->tipo]['total'] = intval($item->total);
 			} else {
-				$dados['obj']['previdencia_percentual'][$item->tipo]['total'] += (int) $item->total;
+				$dados['obj']['previdencia_percentual'][$item->tipo]['total'] += intval($item->total);
 			}
-			$dados['obj']['previdencia_percentual'][$item->tipo][$item->grupo] = (int) $item->total;			
+			$dados['obj']['previdencia_percentual'][$item->tipo][$item->grupo] = intval($item->total);			
 		}
 		foreach($dados['obj']['previdencia_percentual'] as $pos => $item){
 			$dados['obj']['previdencia_percentual'][$pos]['4'] = round($item['4'] * 100 / $item['total'],2);

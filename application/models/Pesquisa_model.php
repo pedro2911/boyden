@@ -597,9 +597,9 @@ class Pesquisa_model extends CI_Model{
 			
 		/*GERENTE*/
 		UNION 
-		SELECT round(((max(pc_alvo_diretoria)-min(pc_alvo_gerencia))*0.25)+min(pc_alvo_gerencia),2) quartil_1,
-		round(((max(pc_alvo_diretoria)-min(pc_alvo_gerencia))*0.5)+min(pc_alvo_gerencia),2) mediana,
-		round(((max(pc_alvo_diretoria)-min(pc_alvo_gerencia))*0.75)+min(pc_alvo_gerencia),2)  quartil_3,
+		SELECT round(((max(pc_alvo_gerencia)-min(pc_alvo_gerencia))*0.25)+min(pc_alvo_gerencia),2) quartil_1,
+		round(((max(pc_alvo_gerencia)-min(pc_alvo_gerencia))*0.5)+min(pc_alvo_gerencia),2) mediana,
+		round(((max(pc_alvo_gerencia)-min(pc_alvo_gerencia))*0.75)+min(pc_alvo_gerencia),2)  quartil_3,
 		'META' tipo,'Gerência' cargo,
 		case 
 		when (vr_faturamento_2019+vr_outros_valores) >= ".$this->value['I']['maior']." then 'I' 
