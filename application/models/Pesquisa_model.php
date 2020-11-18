@@ -206,7 +206,8 @@ class Pesquisa_model extends CI_Model{
 	public function get_empresas_participante(){
 		$sql = "select nm_nome_empresa
 		from tab_pesquisa_2020 
-		where fl_pesquisa_finalizada = 1";
+		where fl_pesquisa_finalizada = 1
+		order by nm_nome_empresa";
 		return $this->db->query($sql)->result_object();
 	}
 

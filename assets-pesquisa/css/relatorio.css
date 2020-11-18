@@ -133,18 +133,15 @@ section table tfoot th {
     padding: 10px 5px;
 }
 section ul {
-    display: inline;
     color: #00aeef;
-}
-section ul::after {
-    clear: both;
-    display: block;
-    content: "";
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
 }
 section ul li {
-    float: left;
-    width: 28%;
-    margin-left: 3%;
+    /*float: left;
+     width: 28%;
+    margin-left: 3%; */
     color: #000;
 }
 .font-12{
