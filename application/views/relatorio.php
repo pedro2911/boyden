@@ -495,6 +495,7 @@
     </div>
   </section>
   <section>
+  <?php var_dump($obj['beneficios']['VEICULO']);?>
     <div class="header">
       <img src="<?php echo base_url('assets/images/relatorio/page_6.png'); ?>" alt="">
       <h2>Benefícios</h2>
@@ -515,12 +516,55 @@
         </tr>
         <?php $iv=0; foreach($obj['beneficios']['VEICULO'] as $pos => $beneficio) { $iv++;?>
         <tr>
+          <?php if($iv==1){ ?>
+          <th class="text-left">
+            <b>Automóvel</b>
+          </th>
+          <th><?php echo number_format((
+            round($obj['beneficios']['VEICULO']['Automóvel acima de R$ 130 Mil']['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2) +
+            round($obj['beneficios']['VEICULO']['Automóvel até R$ 80 Mil']['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2) +
+            round($obj['beneficios']['VEICULO']['Automóvel entre R$ 80 Mil e R$ 130 Mil']['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2)
+            ),2,",","."); ?>%</th>
+          <th><?php echo number_format((
+            round($obj['beneficios']['VEICULO']['Automóvel acima de R$ 130 Mil']['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2) +
+            round($obj['beneficios']['VEICULO']['Automóvel até R$ 80 Mil']['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2) +
+            round($obj['beneficios']['VEICULO']['Automóvel entre R$ 80 Mil e R$ 130 Mil']['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2)
+            ),2,",","."); ?>%</th>
+          <th><?php echo number_format((
+            round($obj['beneficios']['VEICULO']['Automóvel acima de R$ 130 Mil']['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2) +
+            round($obj['beneficios']['VEICULO']['Automóvel até R$ 80 Mil']['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2) +
+            round($obj['beneficios']['VEICULO']['Automóvel entre R$ 80 Mil e R$ 130 Mil']['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2)
+          ),2,",","."); ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b class="pl-5">Até R$ 80 Mil</b>
+          </th>
+          <th><?php echo number_format(isset($obj['beneficios']['VEICULO']['Automóvel até R$ 80 Mil']['PRESIDENTE'])?round($obj['beneficios']['VEICULO']['Automóvel até R$ 80 Mil']['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0,2,",","."); ?>%</th>
+          <th><?php echo number_format(isset($obj['beneficios']['VEICULO']['Automóvel até R$ 80 Mil']['DIRETOR'])?round($obj['beneficios']['VEICULO']['Automóvel até R$ 80 Mil']['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0,2,",","."); ?>%</th>
+          <th><?php echo number_format(isset($obj['beneficios']['VEICULO']['Automóvel até R$ 80 Mil']['GERENTE'])?round($obj['beneficios']['VEICULO']['Automóvel até R$ 80 Mil']['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0,2,",","."); ?>%</th>
+          <?php } if($iv==2){ ?>
+          <th class="text-left">
+            <b class="pl-5">Entre R$ 80 Mil e R$ 130 Mil</b>
+          </th>
+          <th><?php echo number_format(isset($obj['beneficios']['VEICULO']['Automóvel entre R$ 80 Mil e R$ 130 Mil']['PRESIDENTE'])?round($obj['beneficios']['VEICULO']['Automóvel entre R$ 80 Mil e R$ 130 Mil']['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0,2,",","."); ?>%</th>
+          <th><?php echo number_format(isset($obj['beneficios']['VEICULO']['Automóvel entre R$ 80 Mil e R$ 130 Mil']['DIRETOR'])?round($obj['beneficios']['VEICULO']['Automóvel entre R$ 80 Mil e R$ 130 Mil']['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0,2,",","."); ?>%</th>
+          <th><?php echo number_format(isset($obj['beneficios']['VEICULO']['Automóvel entre R$ 80 Mil e R$ 130 Mil']['GERENTE'])?round($obj['beneficios']['VEICULO']['Automóvel entre R$ 80 Mil e R$ 130 Mil']['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0,2,",","."); ?>%</th>
+          <?php } if($iv==3){ ?>
+          <th class="text-left">
+            <b class="pl-5">Acima de R$ 130 Mil</b>
+          </th>
+          <th><?php echo number_format(isset($obj['beneficios']['VEICULO']['Automóvel acima de R$ 130 Mil']['PRESIDENTE'])?round($obj['beneficios']['VEICULO']['Automóvel acima de R$ 130 Mil']['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0,2,",","."); ?>%</th>
+          <th><?php echo number_format(isset($obj['beneficios']['VEICULO']['Automóvel acima de R$ 130 Mil']['DIRETOR'])?round($obj['beneficios']['VEICULO']['Automóvel acima de R$ 130 Mil']['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0,2,",","."); ?>%</th>
+          <th><?php echo number_format(isset($obj['beneficios']['VEICULO']['Automóvel acima de R$ 130 Mil']['GERENTE'])?round($obj['beneficios']['VEICULO']['Automóvel acima de R$ 130 Mil']['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0,2,",","."); ?>%</th>
+          <?php } if($iv>=4){ ?>
           <th class="text-left <?php if($iv==count($obj['beneficios']['VEICULO']))echo 'border-bottom-0'; ?>">
             <b><?php echo $pos; ?></b>
           </th>
           <th class="<?php if($iv==count($obj['beneficios']['VEICULO']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['PRESIDENTE'])?round($beneficio['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0,2,",","."); ?>%</th>
           <th class="<?php if($iv==count($obj['beneficios']['VEICULO']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['DIRETOR'])?round($beneficio['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0,2,",","."); ?>%</th>
           <th class="<?php if($iv==count($obj['beneficios']['VEICULO']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['GERENTE'])?round($beneficio['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0,2,",","."); ?>%</th>
+          <?php } ?>
         </tr>
         <?php } ?>
         <tr>
