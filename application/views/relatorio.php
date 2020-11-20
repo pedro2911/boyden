@@ -510,14 +510,43 @@
         </tr>
       </thead>
       <tbody>
-        <?php foreach($obj['beneficios'] as $pos => $beneficio) { ?>
         <tr>
-          <th class="text-left">
+          <th colspan="4" class="text-left azul"><b>Veículo</b></th>
+        </tr>
+        <?php $iv=0; foreach($obj['beneficios']['VEICULO'] as $pos => $beneficio) { $iv++;?>
+        <tr>
+          <th class="text-left <?php if($iv==count($obj['beneficios']['VEICULO']))echo 'border-bottom-0'; ?>">
             <b><?php echo $pos; ?></b>
           </th>
-          <th><?php echo number_format(isset($beneficio['PRESIDENTE'])?round($beneficio['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0,2,",","."); ?>%</th>
-          <th><?php echo number_format(isset($beneficio['DIRETOR'])?round($beneficio['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0,2,",","."); ?>%</th>
-          <th><?php echo number_format(isset($beneficio['GERENTE'])?round($beneficio['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0,2,",","."); ?>%</th>
+          <th class="<?php if($iv==count($obj['beneficios']['VEICULO']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['PRESIDENTE'])?round($beneficio['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0,2,",","."); ?>%</th>
+          <th class="<?php if($iv==count($obj['beneficios']['VEICULO']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['DIRETOR'])?round($beneficio['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0,2,",","."); ?>%</th>
+          <th class="<?php if($iv==count($obj['beneficios']['VEICULO']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['GERENTE'])?round($beneficio['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0,2,",","."); ?>%</th>
+        </tr>
+        <?php } ?>
+        <tr>
+          <th colspan="4" class="text-left azul border-top-0 pt-3"><b>Saúde</b></th>
+        </tr>
+        <?php $is=0;foreach($obj['beneficios']['SAUDE'] as $pos => $beneficio) { $is++;?>
+        <tr>
+          <th class="text-left <?php if($is==count($obj['beneficios']['SAUDE']))echo 'border-bottom-0'; ?>">
+            <b><?php echo $pos; ?></b>
+          </th>
+          <th class="<?php if($is==count($obj['beneficios']['SAUDE']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['PRESIDENTE'])?round($beneficio['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0,2,",","."); ?>%</th>
+          <th class="<?php if($is==count($obj['beneficios']['SAUDE']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['DIRETOR'])?round($beneficio['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0,2,",","."); ?>%</th>
+          <th class="<?php if($is==count($obj['beneficios']['SAUDE']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['GERENTE'])?round($beneficio['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0,2,",","."); ?>%</th>
+        </tr>
+        <?php } ?>
+        <tr>
+          <th colspan="4" class="text-left azul pt-3"><b>Diversos</b></th>
+        </tr>
+        <?php $id=0; foreach($obj['beneficios']['DIVERSOS'] as $pos => $beneficio) { $id++;?>
+        <tr>
+          <th class="text-left <?php if($id==count($obj['beneficios']['DIVERSOS']))echo 'border-bottom-0'; ?>">
+            <b><?php echo $pos; ?></b>
+          </th>
+          <th class="<?php if($id==count($obj['beneficios']['DIVERSOS']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['PRESIDENTE'])?round($beneficio['PRESIDENTE']* 100 / $obj['total_cargos']['PRESIDENTE'],2):0,2,",","."); ?>%</th>
+          <th class="<?php if($id==count($obj['beneficios']['DIVERSOS']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['DIRETOR'])?round($beneficio['DIRETOR']* 100 / $obj['total_cargos']['DIRETOR'],2):0,2,",","."); ?>%</th>
+          <th class="<?php if($id==count($obj['beneficios']['DIVERSOS']))echo 'border-bottom-0'; ?>"><?php echo number_format(isset($beneficio['GERENTE'])?round($beneficio['GERENTE']* 100 / $obj['total_cargos']['GERENTE'],2):0,2,",","."); ?>%</th>
         </tr>
         <?php } ?>
       </tbody>
@@ -759,6 +788,33 @@
       
     </table>
     <br>
+  </section>
+  <section>
+    <div class="header">
+      <img src="<?php echo base_url('assets/images/relatorio/page_10.png');  ?>" alt="">
+      <h2>Medidas adotadas durante a pandemia</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Medidas</th>
+            <th class="text-center"><b>Nivel executivo</b></th>
+            <th class="text-center"><b>Nivel executivo</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach($obj['medidas_pandemia'] as $pos => $medida) {  ?>
+          <tr>
+            <td class="text-left">
+              <b> <?php echo($pos);?></b>
+            </td>
+
+            <td class="text-center"><?php echo number_format(round($medida['ne']['S']/($medida['ne']['S']+$medida['ne']['N'])*100,2),2,",",".");?>%</td>
+            <td class="text-center"><?php echo number_format(round($medida['dc']['S']/($medida['dc']['S']+$medida['dc']['N'])*100,2),2,",",".");?>%</td>
+          </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+    </div>
   </section>
   <section>
     <div class="header">

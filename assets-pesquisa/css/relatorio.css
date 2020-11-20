@@ -139,10 +139,10 @@ section ul {
     -moz-columns: 3;
 }
 section ul li {
-    /*float: left;
-     width: 28%;
-    margin-left: 3%; */
     color: #000;
+}
+.azul {
+    color: #00aeef;;
 }
 .font-12{
     font-size: 12px !important;

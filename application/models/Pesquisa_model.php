@@ -343,13 +343,13 @@ class Pesquisa_model extends CI_Model{
 		return $this->db->query($sql)->result_object();
 	}
 	public function get_beneficios() {
-		$sql = "SELECT nm_beneficio, count(a.id_beneficio) total, tp_cargo FROM boyden.tab_pesquisa_2020_beneficio as a  
+		$sql = "SELECT nm_beneficio, count(a.id_beneficio) total, tp_cargo, fl_classificacao FROM boyden.tab_pesquisa_2020_beneficio as a  
 		inner join tab_beneficio as b on
 			a.id_beneficio = b.id_beneficio 
 		inner join tab_pesquisa_2020 as c on
 			a.id_pesquisa = c.id_pesquisa
 		WHERE c.fl_pesquisa_finalizada = 1
-		group by tp_cargo,a.id_beneficio
+		group by tp_cargo, fl_classificacao, a.id_beneficio
 		order by tp_cargo,nm_beneficio;";
 		return $this->db->query($sql)->result_object();
 	}
@@ -513,6 +513,167 @@ class Pesquisa_model extends CI_Model{
 		FROM tab_pesquisa_2020
 		WHERE fl_pesquisa_finalizada = 1
 		group by  ifnull(fl_outros_gerente,'N'), grupo";
+		return $this->db->query($sql)->result_object();
+	}
+	public function get_medidas_pandemia() {
+		$sql = "SELECT case when fl_reducao_ne <> 'S' or isnull(fl_reducao_ne) then 'N' when fl_reducao_ne = 'S' then 'S' END valor, count(fl_reducao_ne) total, 'Redução de jornada de trabalho (e salário)' texto, 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_reducao_ne
+		UNION
+		SELECT case when fl_reducao_dc <> 'S' or isnull(fl_reducao_dc) then 'N' when fl_reducao_dc = 'S' then 'S' END valor, count(fl_reducao_dc) total, 'Redução de jornada de trabalho (e salário)' texto, 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_reducao_dc
+		UNION
+		SELECT case when fl_ferias_ne <> 'S' or isnull(fl_ferias_ne) then 'N' when fl_ferias_ne = 'S' then 'S' END valor, count(fl_ferias_ne) total, 'Férias coletivas' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_ferias_ne
+		UNION
+		SELECT case when fl_ferias_dc <> 'S' or isnull(fl_ferias_dc) then 'N' when fl_ferias_dc = 'S' then 'S' END valor, count(fl_ferias_dc) total, 'Férias coletivas' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_ferias_dc
+		UNION
+		SELECT case when fl_desligamento_ne <> 'S' or isnull(fl_desligamento_ne) then 'N' when fl_desligamento_ne = 'S' then 'S' END valor, count(fl_desligamento_ne) total, 'Desligamento de colaboradores (além das demissões planejadas)' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_desligamento_ne
+		UNION
+		SELECT case when fl_desligamento_dc <> 'S' or isnull(fl_desligamento_dc) then 'N' when fl_desligamento_dc = 'S' then 'S' END valor, count(fl_desligamento_dc) total, 'Desligamento de colaboradores (além das demissões planejadas)' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_desligamento_dc
+		UNION
+		SELECT case when fl_suspensao_ne <> 'S' or isnull(fl_suspensao_ne) then 'N' when fl_suspensao_ne = 'S' then 'S' END valor, count(fl_suspensao_ne) total, 'Suspensão e/ou reduão de beneficios (p.ex. vale refeição, vale combustíve!)' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_suspensao_ne
+		UNION
+		SELECT case when fl_suspensao_dc <> 'S' or isnull(fl_suspensao_dc) then 'N' when fl_suspensao_dc = 'S' then 'S' END valor, count(fl_suspensao_dc) total, 'Suspensão e/ou reduão de beneficios (p.ex. vale refeição, vale combustíve!)' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_suspensao_dc
+		UNION
+		SELECT case when fl_oferecimento_ne <> 'S' or isnull(fl_oferecimento_ne) then 'N' when fl_oferecimento_ne = 'S' then 'S' END valor, count(fl_oferecimento_ne) total, 'Oferecimento de apoio adicional ao colaborador (apoio psicológico e outras atividades relacionadas ao hem estar' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_oferecimento_ne
+		UNION
+		SELECT case when fl_oferecimento_dc <> 'S' or isnull(fl_oferecimento_dc) then 'N' when fl_oferecimento_dc = 'S' then 'S' END valor, count(fl_oferecimento_dc) total, 'Oferecimento de apoio adicional ao colaborador (apoio psicológico e outras atividades relacionadas ao hem estar' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_oferecimento_dc
+		UNION
+		SELECT case when fl_hiring_ne <> 'S' or isnull(fl_hiring_ne) then 'N' when fl_hiring_ne = 'S' then 'S' END valor, count(fl_hiring_ne) total, 'Hiring freeze (suspensão de contrataçõoes)' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_hiring_ne
+		UNION
+		SELECT case when fl_hiring_dc <> 'S' or isnull(fl_hiring_dc) then 'N' when fl_hiring_dc = 'S' then 'S' END valor, count(fl_hiring_dc) total, 'Hiring freeze (suspensão de contrataçõoes)' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_hiring_dc
+		UNION
+		SELECT case when fl_investimentos_ne <> 'S' or isnull(fl_investimentos_ne) then 'N' when fl_investimentos_ne = 'S' then 'S' END valor, count(fl_investimentos_ne) total, 'Investimentos adicionais em equipes de transformacção digital' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_investimentos_ne
+		UNION
+		SELECT case when fl_investimentos_dc <> 'S' or isnull(fl_investimentos_dc) then 'N' when fl_investimentos_dc = 'S' then 'S' END valor, count(fl_investimentos_dc) total, 'Investimentos adicionais em equipes de transformacção digital' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_investimentos_dc
+		UNION
+		SELECT case when fl_introducao_ne <> 'S' or isnull(fl_introducao_ne) then 'N' when fl_introducao_ne = 'S' then 'S' END valor, count(fl_introducao_ne) total, 'Introdução de política de home office' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_introducao_ne
+		UNION
+		SELECT case when fl_introducao_dc <> 'S' or isnull(fl_introducao_dc) then 'N' when fl_introducao_dc = 'S' then 'S' END valor, count(fl_introducao_dc) total, 'Introdução de política de home office' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_introducao_dc
+		UNION
+		SELECT case when fl_manutencao_ne <> 'S' or isnull(fl_manutencao_ne) then 'N' when fl_manutencao_ne = 'S' then 'S' END valor, count(fl_manutencao_ne) total, 'Manutenção do regime de home office sem alterações' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_manutencao_ne
+		UNION
+		SELECT case when fl_manutencao_dc <> 'S' or isnull(fl_manutencao_dc) then 'N' when fl_manutencao_dc = 'S' then 'S' END valor, count(fl_manutencao_dc) total, 'Manutenção do regime de home office sem alterações' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_manutencao_dc
+		UNION
+		SELECT case when fl_ampliacao_ne <> 'S' or isnull(fl_ampliacao_ne) then 'N' when fl_ampliacao_ne = 'S' then 'S' END valor, count(fl_ampliacao_ne) total, 'Ampliação do regime de home office' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_ampliacao_ne
+		UNION
+		SELECT case when fl_ampliacao_dc <> 'S' or isnull(fl_ampliacao_dc) then 'N' when fl_ampliacao_dc = 'S' then 'S' END valor, count(fl_ampliacao_dc) total, 'Ampliação do regime de home office' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_ampliacao_dc
+		UNION
+		SELECT case when fl_reducao2_ne <> 'S' or isnull(fl_reducao2_ne) then 'N' when fl_reducao2_ne = 'S' then 'S' END valor, count(fl_reducao2_ne) total, 'Redução do regime de home office' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_reducao2_ne
+		UNION
+		SELECT case when fl_reducao2_dc <> 'S' or isnull(fl_reducao2_dc) then 'N' when fl_reducao2_dc = 'S' then 'S' END valor, count(fl_reducao2_dc) total, 'Redução do regime de home office' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_reducao2_dc
+		UNION
+		SELECT case when fl_implantacao_1_ne <> 'S' or isnull(fl_implantacao_1_ne) then 'N' when fl_implantacao_1_ne = 'S' then 'S' END valor, count(fl_implantacao_1_ne) total, 'Implantação de regime de home office integral para 2021 (para parte dos colaboradores)' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_implantacao_1_ne
+		UNION
+		SELECT case when fl_implantacao_1_dc <> 'S' or isnull(fl_implantacao_1_dc) then 'N' when fl_implantacao_1_dc = 'S' then 'S' END valor, count(fl_implantacao_1_dc) total, 'Implantação de regime de home office integral para 2021 (para parte dos colaboradores)' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		UNION
+		SELECT case when fl_implantacao_2_ne <> 'S' or isnull(fl_implantacao_2_ne) then 'N' when fl_implantacao_2_ne = 'S' then 'S' END valor, count(fl_implantacao_2_ne) total, 'Implantação de regime de home office integral para 2021 (para a totalidade dos colaboradores)' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_implantacao_1_ne
+		UNION
+		SELECT case when fl_implantacao_2_dc <> 'S' or isnull(fl_implantacao_2_dc) then 'N' when fl_implantacao_2_dc = 'S' then 'S' END valor, count(fl_implantacao_2_dc) total, 'Implantação de regime de home office integral para 2021 (para a totalidade dos colaboradores)' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_implantacao_2_dc
+		UNION
+		SELECT case when fl_implantacao_2_ne <> 'S' or isnull(fl_implantacao_3_ne) then 'N' when fl_implantacao_3_ne = 'S' then 'S' END valor, count(fl_implantacao_3_ne) total, 'Implantação de regime de home office parcial para 2021 (para parte dos colaboradores)' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_implantacao_3_ne
+		UNION
+		SELECT case when fl_implantacao_3_dc <> 'S' or isnull(fl_implantacao_3_dc) then 'N' when fl_implantacao_3_dc = 'S' then 'S' END valor, count(fl_implantacao_3_dc) total, 'Implantação de regime de home office parcial para 2021 (para parte dos colaboradores)' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_implantacao_3_dc
+		UNION
+		SELECT case when fl_implantacao_4_ne <> 'S' or isnull(fl_implantacao_4_ne) then 'N' when fl_implantacao_4_ne = 'S' then 'S' END valor, count(fl_implantacao_4_ne) total, 'Implantação de regime de home office parcial para 2021 (para a totalidade dos colaboradores)' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_implantacao_4_ne
+		UNION
+		SELECT case when fl_implantacao_4_dc <> 'S' or isnull(fl_implantacao_4_dc) then 'N' when fl_implantacao_4_dc = 'S' then 'S' END valor, count(fl_implantacao_4_dc) total, 'Implantação de regime de home office parcial para 2021 (para a totalidade dos colaboradores)' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_implantacao_4_dc
+		UNION
+		SELECT case when fl_mudancas_ne <> 'S' or isnull(fl_mudancas_ne) then 'N' when fl_mudancas_ne = 'S' then 'S' END valor, count(fl_mudancas_ne) total, 'Sem mudanças previstas do regime de home office atual para 2021' texto , 'ne' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_mudancas_ne
+		UNION
+		SELECT case when fl_mudancas_dc <> 'S' or isnull(fl_mudancas_dc) then 'N' when fl_mudancas_dc = 'S' then 'S' END valor, count(fl_mudancas_dc) total, 'Sem mudanças previstas do regime de home office atual para 2021' texto , 'dc' tipo
+		FROM boyden.tab_pesquisa_2020
+		WHERE fl_pesquisa_finalizada = 1
+		GROUP BY fl_mudancas_dc;";
 		return $this->db->query($sql)->result_object();
 	}
 	public function get_bonus(){

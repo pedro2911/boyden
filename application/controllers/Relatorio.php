@@ -70,12 +70,13 @@ class Relatorio extends CI_Controller {
 		$dados['obj']['mudancas_remuneracao_gerencias']  = $this->pesquisa_model->get_mudancas_remuneracao_gerencias();
 		$dados['obj']['mudancas_beneficios_gerencias']  = $this->pesquisa_model->get_mudancas_beneficios_gerencias();
 		$beneficios  = $this->pesquisa_model->get_beneficios();
-		$total_cargos = $this->pesquisa_model->get_total_por_cargo();
 		
 		$beneficios_x_cargo = [];
 		foreach($beneficios as $pos => $item){
-			$dados['obj']['beneficios'][$item->nm_beneficio][$item->tp_cargo] = (int) $item->total;
+			$dados['obj']['beneficios'][$item->fl_classificacao][$item->nm_beneficio][$item->tp_cargo] = (int) $item->total;
 		}
+
+		$total_cargos = $this->pesquisa_model->get_total_por_cargo();
 		foreach($total_cargos as $pos => $item){
 			$dados['obj']['total_cargos'][$item->tp_cargo] = (int) $item->total;
 		}
@@ -135,6 +136,12 @@ class Relatorio extends CI_Controller {
 					}
 				}
 			}
+		}
+		$medidas_pandemia =  $this->pesquisa_model->get_medidas_pandemia();
+		foreach($medidas_pandemia  as $pos => $item){
+			$dados['obj']['medidas_pandemia'][$item->texto][$item->tipo][$item->valor] = $item->total;
+			$dados['obj']['medidas_pandemia'][$item->texto][$item->tipo][$item->valor] = $item->total;
+			$dados['obj']['medidas_pandemia'][$item->texto][$item->tipo][$item->valor] = $item->total;
 		}
 
 		$bonus =  $this->pesquisa_model->get_bonus();
