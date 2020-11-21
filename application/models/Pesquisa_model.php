@@ -404,6 +404,42 @@ class Pesquisa_model extends CI_Model{
 		";
 		return $this->db->query($sql)->result_object();
 	}
+	public function get_previdencia_multiplos() {
+		$sql = "SELECT
+		count(IFNULL(nr_multiplo_contribuicao_presidente,0)) total, 'PRESIDENTE' tipo,
+		( case 
+			when IFNULL(nr_multiplo_contribuicao_presidente,0) <=1 then 1 
+			when IFNULL(nr_multiplo_contribuicao_presidente,0) >1 AND IFNULL(nr_multiplo_contribuicao_presidente,0) <= 2 then 2
+			when IFNULL(nr_multiplo_contribuicao_presidente,0) > 2  then 3
+			end ) grupo
+		FROM tab_pesquisa_2020 
+		WHERE fl_pesquisa_finalizada = 1
+		group by grupo
+		UNION
+		SELECT 
+		count(IFNULL(nr_multiplo_contribuicao_diretor,0)) total, 'DIRETOR' tipo,
+		( case 
+			when IFNULL(nr_multiplo_contribuicao_diretor,0) <=1 then 1 
+			when IFNULL(nr_multiplo_contribuicao_diretor,0) >1 AND IFNULL(nr_multiplo_contribuicao_diretor,0) <= 2 then 2
+			when IFNULL(nr_multiplo_contribuicao_diretor,0) > 2  then 3
+		 end ) grupo
+		FROM tab_pesquisa_2020 
+		WHERE fl_pesquisa_finalizada = 1
+		 group by grupo
+		 UNION
+		 SELECT 
+		count(IFNULL(nr_multiplo_contribuicao_gerente,0)) total, 'GERENTE' tipo,
+		( case 
+			when IFNULL(nr_multiplo_contribuicao_gerente,0) <=1 then 1 
+			when IFNULL(nr_multiplo_contribuicao_gerente,0) >1 AND IFNULL(nr_multiplo_contribuicao_gerente,0) <= 2 then 2
+			when IFNULL(nr_multiplo_contribuicao_gerente,0) > 2  then 3
+		 end ) grupo
+		FROM tab_pesquisa_2020 
+		WHERE fl_pesquisa_finalizada = 1
+		 group by grupo
+		";
+		return $this->db->query($sql)->result_object();
+	}
 	public function get_incentivos() {
 		$sql = "SELECT 'PRESIDENTE' cargo, 'STOCK' tipo, ifnull(fl_stock_option_presidente,'N') valor, count(ifnull(fl_stock_option_presidente,'N'))total,  ( 
 		case 

@@ -108,6 +108,20 @@ class Relatorio extends CI_Controller {
 			$dados['obj']['previdencia_percentual'][$pos]['8'] = round($item['8'] * 100 / $item['total'],2);
 			$dados['obj']['previdencia_percentual'][$pos]['10'] = round($item['10'] * 100 / $item['total'],2);
 		}
+		$previdencia_multiplos =  $this->pesquisa_model->get_previdencia_multiplos();
+		foreach($previdencia_multiplos as $pos => $item){
+			if(!isset($dados['obj']['previdencia_multiplos'][$item->tipo]['total'])) {
+				$dados['obj']['previdencia_multiplos'][$item->tipo]['total'] = intval($item->total);
+			} else {
+				$dados['obj']['previdencia_multiplos'][$item->tipo]['total'] += intval($item->total);
+			}
+			$dados['obj']['previdencia_multiplos'][$item->tipo][$item->grupo] = intval($item->total);			
+		}
+		foreach($dados['obj']['previdencia_multiplos'] as $pos => $item){
+			$dados['obj']['previdencia_multiplos'][$pos]['1'] = round($item['1'] * 100 / $item['total'],2);
+			$dados['obj']['previdencia_multiplos'][$pos]['2'] = round($item['2'] * 100 / $item['total'],2);
+			$dados['obj']['previdencia_multiplos'][$pos]['3'] = round($item['3'] * 100 / $item['total'],2);
+		}
 
 		$incentivos =  $this->pesquisa_model->get_incentivos();
 		foreach($incentivos  as $pos => $item){

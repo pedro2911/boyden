@@ -495,7 +495,6 @@
     </div>
   </section>
   <section>
-  <?php var_dump($obj['beneficios']['VEICULO']);?>
     <div class="header">
       <img src="<?php echo base_url('assets/images/relatorio/page_6.png'); ?>" alt="">
       <h2>Benefícios</h2>
@@ -598,6 +597,7 @@
     </table>
   </section>
   <section>
+  <?php var_dump($obj['beneficios']['VEICULO']);?>
     <div class="header">
       <img src="<?php echo base_url('assets/images/relatorio/page_6.1.png'); ?>" alt="">
       <h2>Previdência privada</h2>
@@ -659,6 +659,44 @@
           <th><?php echo number_format($obj['previdencia_percentual']['PRESIDENTE']['10'],2,",","."); ?>%</th>
           <th><?php echo number_format($obj['previdencia_percentual']['DIRETOR']['10'],2,",","."); ?>%</th>
           <th><?php echo number_format($obj['previdencia_percentual']['GERENTE']['10'],2,",","."); ?>%</th>
+        </tr>
+      </tbody>
+      
+    </table>
+    <br><br>
+    <table>
+      <thead>
+        <tr>
+          <th>Multiplos em relação a contribuição do colaborador</th>
+          <th class="text-center"><b>Presidência</b></th>
+          <th class="text-center"><b>Diretoria</b></th>
+          <th class="text-center"><b>Gerência</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="text-left">
+            <b>Ate 1:1</b>
+          </th>
+          <th><?php echo number_format($obj['previdencia_multiplos']['PRESIDENTE']['1'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_multiplos']['DIRETOR']['1'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_multiplos']['GERENTE']['1'],2,",","."); ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Acima de 1 :1 ate 2:1</b>
+          </th>
+          <th><?php echo number_format($obj['previdencia_multiplos']['PRESIDENTE']['2'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_multiplos']['DIRETOR']['2'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_multiplos']['GERENTE']['2'],2,",","."); ?>%</th>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <b>Acima de 2:1</b>
+          </th>
+          <th><?php echo number_format($obj['previdencia_multiplos']['PRESIDENTE']['3'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_multiplos']['DIRETOR']['3'],2,",","."); ?>%</th>
+          <th><?php echo number_format($obj['previdencia_multiplos']['GERENTE']['3'],2,",","."); ?>%</th>
         </tr>
       </tbody>
       
